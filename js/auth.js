@@ -1,4 +1,4 @@
-// js/auth.js — Supabase v2 auth (UMD) with clean success redirects
+// js/auth.js — Updated for reliable local session storage and auto-refresh
 (() => {
   'use strict';
 
@@ -28,14 +28,21 @@
       const client = window.supabase.createClient(url, key, {
         auth: {
           persistSession: true,
-          storage: window.localStorage,
-          autoRefreshToken: true,
-          detectSessionInUrl: true,
+          storage: window.localStorage,  // Explicitly use localStorage for session persistence
+          autoRefreshToken: true,        // Auto-refresh expired tokens
+          detectSessionInUrl: true,      // Handle auth callbacks (e.g., email confirm)
+          flowType: 'pkce'               // Use PKCE for secure auth in browser
         }
       });
 
       window.supabaseClient = client;
       console.log('[Auth] Supabase initialized successfully');
+
+      // Restore session from localStorage if available
+      const { data: { session } } = await client.auth.getSession();
+      if (session) {
+        console.log('[Auth] Restored session from localStorage:', session.user?.email);
+      }
 
       setupAuth(client);
     } catch (err) {
@@ -46,6 +53,19 @@
   function setupAuth(client) {
     const loginForm = document.getElementById('login-form');
     const registerForm = document.getElementById('register-form');
+
+    // Immediate session check - if already logged in on auth pages, redirect to main
+    (async () => {
+      try {
+        const { data: { session } } = await client.auth.getSession();
+        if (session && (loginForm || registerForm)) {
+          console.log('[Auth] Active session found on login/register page - redirecting to main');
+          window.location.replace('/OllyStream.html');
+        }
+      } catch (err) {
+        console.error('[Auth] Session check failed:', err);
+      }
+    })();
 
     function showMessage(text, isError = false) {
       const errorMsg = document.getElementById('error-message');
@@ -97,18 +117,12 @@
           return;
         }
 
-        console.log('[Auth] Login response:', data);
-
-        if (!data.session) {
-          showMessage('Authentication failed', true);
-          setFormDisabled(form, false);
-          return;
-        }
+        console.log('[Auth] Login successful, session:', data.session);
 
         // SUCCESS - redirect cleanly
         showMessage('✅ Signed in successfully! Redirecting...');
         setTimeout(() => {
-          window.location.replace('/index.html');
+          window.location.replace('/OllyStream.html');
         }, 800);
 
       } catch (err) {
@@ -167,7 +181,7 @@
         // SUCCESS - redirect cleanly
         showMessage('✅ Account created successfully! Redirecting...');
         setTimeout(() => {
-          window.location.replace('/index.html');
+          window.location.replace('/OllyStream.html');
         }, 800);
 
       } catch (err) {
@@ -187,5 +201,70 @@
     }
   }
 })();
+``````javascript
+(async () => {
+  // Wait for shared Supabase client set by auth.js
+  function waitForClient(maxAttempts = 100, interval = 200) {
+    return new Promise((resolve, reject) => {
+      let attempts = 0;
+      const check = () => {
+        if (window.supabaseClient) return resolve(window.supabaseClient);
+        if (++attempts >= maxAttempts) return reject(new Error("Supabase client not ready"));
+        setTimeout(check, interval);
+      };
+      check();
+    });
+  }
 
+  function goRegister() {
+    console.warn("[Auth] No session - redirecting to register");
+    window.location.replace("/register.html");
+  }
 
+  try {
+    const client = await waitForClient();
+
+    // Try immediate session check from localStorage
+    let { data: { session }, error } = await client.auth.getSession();
+    if (error) {
+      console.error("[Auth] getSession error:", error);
+    }
+
+    if (session) {
+      console.log("[Auth] ✅ Session found from localStorage:", session.user?.email);
+    } else {
+      console.log("[Auth] No immediate session, watching auth state...");
+      const { data: listener } = client.auth.onAuthStateChange((event, newSession) => {
+        if (event === "SIGNED_IN" && newSession) {
+          console.log("[Auth] ✅ Session detected:", newSession.user?.email);
+          listener.subscription.unsubscribe();
+        } else if (event === "SIGNED_OUT") {
+          console.warn("[Auth] Signed out - redirecting");
+          goRegister();
+        } else if (event === "INITIAL_SESSION" && !newSession) {
+          console.warn("[Auth] Initial check: No session - redirecting");
+          goRegister();
+        } else if (event === "TOKEN_REFRESHED") {
+          console.log("[Auth] Token refreshed successfully");
+        }
+      });
+
+      // Increased timeout and refresh session explicitly
+      setTimeout(async () => {
+        console.log("[Auth] Running timeout session check...");
+        await client.auth.refreshSession();  // Force refresh if token expired
+        const { data: { session: retrySession } } = await client.auth.getSession();
+        if (!retrySession) {
+          console.warn("[Auth] Timeout: Still no session - redirecting");
+          goRegister();
+        } else {
+          console.log("[Auth] Timeout check: Session found after refresh");
+        }
+      }, 10000);
+    }
+
+  } catch (err) {
+    console.error("[Auth] Session verification failed:", err);
+    goRegister();
+  }
+})();
