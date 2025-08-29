@@ -106,7 +106,7 @@
         // SUCCESS - redirect
         showMessage('Account created! Redirecting...');
         setTimeout(() => {
-          window.location.replace('/OllyStream.html');
+          window.location.replace('/index.html');
         }, 1000);
 
       } catch (err) {
@@ -120,3 +120,4 @@
     }
   }
 })();
+
