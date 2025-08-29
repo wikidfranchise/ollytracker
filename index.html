@@ -1,6 +1,5 @@
+
 <!DOCTYPE html>
-<!-- Preview deploy test -->
-<!-- retrigger deploy -->
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -1499,10 +1498,13 @@
         </div>
     </div>
 
+    <!-- HEADER SECTION - Compact Layout with Dark Theme -->
     <div class="header-wrapper">
         <div class="header-content">
+            <!-- Logo -->
             <img src="OllyTracker Yacht Logo.png" alt="OllyTracker" class="brand-logo">
             
+            <!-- Title Section -->
             <div class="title-section">
                 <h1 class="page-title">The OllyStream<sup class="tm">™</sup></h1>
                 <p class="page-subtitle">Live SEC Filings Stream - Real-Time EDGAR Data</p>
@@ -1511,6 +1513,8 @@
         </div>
     </div>
 
+    <!-- NAVIGATION BAR - Compact Style with Dark Theme -->
+    <!-- NAVIGATION BAR - Compact Style with Dark Theme -->
     <nav class="main-nav">
         <a href="OllyStream.html" class="nav-btn active">⚡ OllyStream</a>
         <a href="OllyTracker.html" class="nav-btn" target="_blank">📈 OllyTracker</a>
@@ -1522,6 +1526,7 @@
         <a href="OllyAuditor.html" class="nav-btn" target="_blank">📊 OllyAuditor</a>
     </nav>
 
+    <!-- REST OF THE ORIGINAL HTML CONTENT CONTINUES HERE - ALL JS PRESERVED -->
     <div class="controls">
         <div class="status">
             <div class="status-indicator" id="statusIndicator"></div>
@@ -1737,21 +1742,15 @@
         <strong>New Filing</strong><br>
         <span id="notificationText"></span>
     </div>
-    
-    <script src="js/OllyEngine.js"></script>
-
-    <!-- Existing inline JS continues -->
+        
     <script>
-      // ALL ORIGINAL JAVASCRIPT PRESERVED EXACTLY AS IS
-
-    <script>
-      // ALL ORIGINAL JAVASCRIPT PRESERVED EXACTLY AS IS
+// ALL ORIGINAL JAVASCRIPT PRESERVED EXACTLY AS IS
 // Map filing form types to CSS class names for coloring
 function getFormClass(formTypeRaw) {
   const ft = (formTypeRaw || '').toUpperCase().replace(/\s+/g,'');
   if (/^(FORM)?3(\/A|A|[-/].*)?$/.test(ft) || /^(FORM)?4(\/A|A|[-/].*)?$/.test(ft) || /^(FORM)?5(\/A|A|[-/].*)?$/.test(ft)) return 'badge-insider';
   if (ft === '144' || ft.startsWith('144/')) return 'badge-144';
-  if (ft === '8-K' || ft === '8K' || d/^8-K/i.test(formTypeRaw || '')) return 'badge-8k';
+  if (ft === '8-K' || ft === '8K' || /^8-K/i.test(formTypeRaw || '')) return 'badge-8k';
   if (ft === '10-K' || ft === '10K' || /^10-K/i.test(formTypeRaw || '')) return 'badge-10k';
   if (ft === '10-Q' || ft === '10Q' || /^10-Q/i.test(formTypeRaw || '')) return 'badge-10q';
   if (ft.startsWith('DEF14A')) return 'badge-def14a';
@@ -2457,7 +2456,7 @@ class SECFilingStream {
                 ${isInsiderFiling && !filing.reportingOwnerName ? `<p style="color: #90EE90;">ℹ️ This is an insider filing (Form ${filing.formType})</p>` : ''}
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; font-size: 0.9rem;">
                     <div><strong>CIK:</strong> ${filing.cik}</div>
-                    <div><strong>Filed:</strong> ${OllyEngine.Utils.formatTime(filing.filedAt)}</div>
+                    <div><strong>Filed:</strong> ${this.formatTime(filing.filedAt)}</div>
                     <div><strong>Form Type:</strong> </div>
     <button class="form-badge ${getFormClass(filing.formType)}" type="button">${properFormType}</button>
                     <div><strong>Accession:</strong> ${filing.accessionNo}</div>
@@ -2621,7 +2620,7 @@ class SECFilingStream {
                       ? `<div style="color:${filing.stockUp ? '#00ff88' : '#ff9999'}; font-size:0.85rem; font-weight:600;">${filing.stockUp ? '↑' : '↓'} ${filing.stockPrice.toFixed(2)}</div>`
                       : ''
                     }
-                    <div class="company-name">${OllyEngine.Utils.truncateCompanyName(filing.companyName)}</div>
+                    <div class="company-name">${this.truncateCompanyName(filing.companyName)}</div>
                     ${individualName && isInsiderFiling ? `<div style="font-size: 0.75rem; color: #90EE90; margin-top: 2px;">📋 ${individualName}</div>` : ''}
                     <div class="company-badges">
                         ${portfolioBadge}
@@ -2636,7 +2635,7 @@ class SECFilingStream {
             <div class="filing-details">
                 <div class="detail-row">
                     <span class="detail-label">Filed:</span>
-                    <span class="detail-value filed-time">${OllyEngine.Utils.formatTime(filing.filedAt)}</span>
+                    <span class="detail-value filed-time">${this.formatTime(filing.filedAt)}</span>
                 </div>
                 <div class="detail-row">
                     <span class="detail-label">Sector:</span>
@@ -2913,6 +2912,21 @@ class SECFilingStream {
             return 'high';
         }
         return 'normal';
+    }
+
+    truncateCompanyName(name) {
+        return name && name.length > 32 ? name.substring(0, 32) + '...' : (name || 'Unknown Company');
+    }
+
+    formatTime(timestamp) {
+        const date = new Date(timestamp);
+        const now = new Date();
+        const diffMs = now - date;
+        const diffMins = Math.floor(diffMs / 60000);
+        
+        if (diffMins < 1) return 'Just now';
+        else if (diffMins < 60) return `${diffMins}m ago`;
+        else return date.toLocaleTimeString();
     }
 
     viewFiling(url) {
@@ -3240,7 +3254,7 @@ class SECFilingStream {
                 <div class="portfolio-activity">
                     <span class="portfolio-activity-count">${company.todayCount} filings today</span>
                     <span class="portfolio-last-filing">
-                        ${company.lastFiling ? OllyEngine.Utils.formatTime(company.lastFiling) : 'No recent activity'}
+                        ${company.lastFiling ? this.formatTime(company.lastFiling) : 'No recent activity'}
                     </span>
                 </div>
             </div>
