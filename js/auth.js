@@ -4,13 +4,19 @@
 
   // Fetch keys securely from Vercel API route
   async function getSupabaseKeys() {
+    console.log('[Auth] Fetching keys from /api/keys...');
     const resp = await fetch('/api/keys');
-    if (!resp.ok) throw new Error('Failed to fetch Supabase keys');
+    if (!resp.ok) {
+      console.error('[Auth] Failed to fetch keys:', resp.status, resp.statusText);
+      throw new Error('Failed to fetch Supabase keys');
+    }
     const { SUPABASE_URL, SUPABASE_ANON_KEY } = await resp.json();
 
     if (!SUPABASE_URL || !SUPABASE_ANON_KEY) {
+      console.error('[Auth] Keys missing in response:', { SUPABASE_URL, SUPABASE_ANON_KEY });
       throw new Error('Supabase keys missing from API response');
     }
+    console.log('[Auth] Keys fetched successfully');
     return { url: SUPABASE_URL, key: SUPABASE_ANON_KEY };
   }
 
@@ -22,15 +28,14 @@
       const client = window.supabase.createClient(url, key, {
         auth: {
           persistSession: true,
-          storage: window.localStorage,   // 👈 force session into browser localStorage
+          storage: window.localStorage,
           autoRefreshToken: true,
-          autoRefresh: true,
           detectSessionInUrl: true,
         }
       });
 
       window.supabaseClient = client;
-      console.log('[Auth] Supabase initialized');
+      console.log('[Auth] Supabase initialized successfully');
 
       setupAuth(client);
     } catch (err) {
@@ -41,19 +46,6 @@
   function setupAuth(client) {
     const loginForm = document.getElementById('login-form');
     const registerForm = document.getElementById('register-form');
-
-    // Immediate session check - if already logged in on auth pages, redirect to main
-    (async () => {
-      try {
-        const { data: { session } } = await client.auth.getSession();
-        if (session && (loginForm || registerForm)) {
-          console.log('[Auth] Active session found on login/register page - redirecting to main');
-          window.location.replace('/OllyStream.html');
-        }
-      } catch (err) {
-        console.error('[Auth] Session check failed:', err);
-      }
-    })();
 
     function showMessage(text, isError = false) {
       const errorMsg = document.getElementById('error-message');
@@ -95,13 +87,17 @@
       showMessage('Signing in...');
 
       try {
+        console.log('[Auth] Attempting login for:', email);
         const { data, error } = await client.auth.signInWithPassword({ email, password });
 
         if (error) {
+          console.error('[Auth] Login error:', error);
           showMessage(error.message, true);
           setFormDisabled(form, false);
           return;
         }
+
+        console.log('[Auth] Login response:', data);
 
         if (!data.session) {
           showMessage('Authentication failed', true);
@@ -116,6 +112,7 @@
         }, 800);
 
       } catch (err) {
+        console.error('[Auth] Login failed:', err);
         showMessage('Login failed: ' + err.message, true);
         setFormDisabled(form, false);
       }
@@ -145,13 +142,17 @@
       showMessage('Creating account...');
 
       try {
+        console.log('[Auth] Attempting registration for:', email, 'with meta:', { fullName, org });
         const { data, error } = await client.auth.signUp({
           email,
           password,
           options: { data: { full_name: fullName, org } }
         });
 
+        console.log('[Auth] Registration response:', data, error);
+
         if (error) {
+          console.error('[Auth] Registration error:', error);
           showMessage(error.message, true);
           setFormDisabled(form, false);
           return;
@@ -170,6 +171,7 @@
         }, 800);
 
       } catch (err) {
+        console.error('[Auth] Registration failed:', err);
         showMessage('Registration failed: ' + err.message, true);
         setFormDisabled(form, false);
       }
