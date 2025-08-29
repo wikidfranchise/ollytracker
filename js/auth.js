@@ -1,4 +1,4 @@
-// js/auth.js — Fixed typo in getElementById, with alerts for debug
+// js/auth.js — Supabase v2 auth with alerts for debug and fixed typo
 (() => {
   'use strict';
 
@@ -52,8 +52,8 @@
   })();
 
   function setupAuth(client) {
-    const loginForm = document.getElementById('login-form');  // Fixed typo: getElementById
-    const registerForm = document.getElementById('register-form');  // Fixed typo: getElementById
+    const loginForm = document.getElementById('login-form');  // Fixed: getElementById
+    const registerForm = document.getElementById('register-form');  // Fixed: getElementById
 
     function showMessage(text, isError = false) {
       const errorMsg = document.getElementById('error-message');
