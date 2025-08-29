@@ -108,7 +108,7 @@
         // SUCCESS - redirect cleanly
         showMessage('✅ Signed in successfully! Redirecting...');
         setTimeout(() => {
-          window.location.replace('/OllyStream.html');
+          window.location.replace('/index.html');
         }, 800);
 
       } catch (err) {
@@ -187,4 +187,5 @@
     }
   }
 })();
+
 
