@@ -171,11 +171,11 @@
         <div id="success-message" style="display:none;"></div>
 
         <form id="register-form">
-            <input type="text" id="full_name" placeholder="Full Name" required>
-            <input type="text" id="org" placeholder="Organization (optional)">
-            <input type="email" id="email" placeholder="Email Address" required>
-            <input type="password" id="password" placeholder="Password (at least 6 characters)" required minlength="6">
-            <input type="password" id="confirmPassword" placeholder="Confirm Password" required minlength="6">
+            <input type="text" id="full_name" placeholder="Full Name" required autocomplete="off">
+            <input type="text" id="org" placeholder="Organization (optional)" autocomplete="off">
+            <input type="email" id="email" placeholder="Email Address" required autocomplete="off">
+            <input type="password" id="password" placeholder="Password (at least 6 characters)" required minlength="6" autocomplete="new-password">
+            <input type="password" id="confirmPassword" placeholder="Confirm Password" required minlength="6" autocomplete="new-password">
             <button type="submit">Register</button>
         </form>
 
