@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OllyTracker - Register</title>
+  <link rel="stylesheet" href="css/olly-common.css" />
+  <link rel="stylesheet" href="css/register.css" />
+</head>
+
+<body>
+  <div class="register-container auth-container">
+    <div class="logo-header" style="text-align:center; margin-bottom:20px;">
+      <img src="assets/mosa-hero.png"
+           alt="Mosa - OllyTracker Security K9"
+           style="height:80px; margin-right:20px;" />
+      <img src="assets/OllyTracker_Yacht you_Logo.png"
+           alt="OllyTracker Logo"
+           style="height:60px; vertical-align:middle;" />
+    </div>
+
+    <div class="register-box">
+      <h2>Create Your OllyTracker Account</h2>
+      <p>Join the 45-Day Head Start Program</p>
+
+      <div id="error-message" style="display:none; color:#dc2626; margin-bottom:10px;"></div>
+      <div id="success-message" style="display:none; color:#16a34a; margin-bottom:10px;"></div>
+
+      <!-- ❌ Removed inline onsubmit -->
+      <!-- ✅ auth.js handles form -->
+      <form id="register-form">
+        <input type="text" id="full_name" placeholder="Full Name" required />
+        <input type="text" id="org" placeholder="Organization" />
+        <input type="email" id="email" placeholder="Email Address" required />
+        <input type="password" id="password" placeholder="Password" required />
+        <input type="password" id="confirmPassword" placeholder="Confirm Password" required />
+        <button type="submit" class="btn-primary">Register</button>
+      </form>
+
+      <p style="margin-top:15px;">
+        Already have an account?
+        <a href="login.html">Log in</a>
+      </p>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/auth.js"></script>
+</body>
+</html>

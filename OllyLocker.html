@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OllyLocker™ - Individual Dossier & Network Analysis</title>
+    
+    <link rel="stylesheet" href="/css/olly-common.css">
+
+    <script type="text/javascript" src="https://visjs.github.io/vis-network/standalone/umd/vis-network.min.js"></script>
+    <link href="https://visjs.github.io/vis-network/standalone/umd/vis-network.min.css" rel="stylesheet" type="text/css">
+    
+    <style>
+        /* Page-Specific Styles for OllyLocker */
+        .search-panel {
+            background: rgba(255,255,255,0.1);
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+        }
+        .search-panel input {
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            background: rgba(0,0,0,0.2);
+            border: 1px solid rgba(255,255,255,0.3);
+            border-radius: 8px;
+            color: white;
+        }
+        #results-panel {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 20px;
+        }
+        #otcv-container, #network-graph-container {
+            background: rgba(0,0,0,0.2);
+            padding: 20px;
+            border-radius: 12px;
+        }
+        #network-graph {
+            width: 100%;
+            height: 600px;
+            border-radius: 8px;
+        }
+        h2 {
+            color: #ffd700;
+            margin-bottom: 15px;
+            border-bottom: 1px solid rgba(255,215,0,0.3);
+            padding-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="header-placeholder"></div>
+    
+    <nav id="nav-placeholder" class="nav-bar"></nav>
+
+    <div class="container">
+        <h1>OllyLocker™ - Individual Intelligence</h1>
+
+        <div id="search-panel" class="search-panel">
+            <input type="text" id="personSearch" placeholder="Search for an executive or director by name or CIK...">
+        </div>
+
+        <div id="results-panel" style="display: none;">
+            <div id="otcv-container">
+                <h2>OLLY Curriculum Vitae (OTCV)</h2>
+                <div id="person-details"></div>
+                <div id="filing-history"></div>
+            </div>
+            <div id="network-graph-container">
+                <h2>Board Interlock Network</h2>
+                <div id="network-graph"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="/js/auth.js"></script>
+    <script src="/js/olly-common.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            const session = await Olly.protectPage();
+            if (session) {
+                // Page is secure, initialize OllyLocker logic
+                initializeLockerPage();
+            }
+        });
+
+        function initializeLockerPage() {
+            // Check the URL for state passed from OllyTracker
+            const hash = window.location.hash;
+            if (hash.includes('#state=')) {
+                const stateStr = hash.split('=')[1];
+                const state = JSON.parse(decodeURIComponent(stateStr));
+                
+                // Use the passed-in state to automatically run a search
+                document.getElementById('personSearch').value = state.person;
+                document.getElementById('results-panel').style.display = 'grid';
+                fetchAndDisplayPersonData(state);
+            }
+        }
+
+        async function fetchAndDisplayPersonData(personInfo) {
+            // Placeholder for the logic to fetch a person's details,
+            // their filing history (the OTCV), and their board interlocks.
+            // This will use Olly.callSecApi() to get data.
+
+            const personDetailsEl = document.getElementById('person-details');
+            personDetailsEl.innerHTML = `<h3>${personInfo.person}</h3><p>CIK: ${personInfo.cik}</p>`;
+
+            // Initialize the network graph
+            initializeNetworkGraph(personInfo);
+        }
+
+        function initializeNetworkGraph(personInfo) {
+            const container = document.getElementById('network-graph');
+            const nodes = new vis.DataSet([
+                { id: 1, label: personInfo.person, shape: 'ellipse', color: '#ffd700' },
+                // Other company nodes will be added here based on API data
+            ]);
+            const edges = new vis.DataSet([
+                // Edges connecting the person to companies will be added here
+            ]);
+            const data = { nodes: nodes, edges: edges };
+            const options = {
+                nodes: {
+                    font: {
+                        color: '#ffffff'
+                    },
+                    borderWidth: 2
+                },
+                edges: {
+                    color: 'rgba(255,255,255,0.5)'
+                },
+                physics: {
+                    solver: 'forceAtlas2Based',
+                    forceAtlas2Based: {
+                        gravitationalConstant: -50,
+                        centralGravity: 0.01,
+                        springLength: 100,
+                        springConstant: 0.08
+                    }
+                }
+            };
+
+            const network = new vis.Network(container, data, options);
+        }
+    </script>
+</body>
+</html>

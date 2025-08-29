@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin Console - OllyTracker</title>
+  <link rel="stylesheet" href="css/login.css"/>
+  <style>
+    body {
+      background: linear-gradient(135deg, #1F2937 0%, #111827 100%);
+      color: #FFFF;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+      margin: 0;
+      padding: 40px;
+    }
+    .admin-container { 
+      background-color: rgba(31, 41, 55, 0.95); 
+      padding: 30px; 
+      border-radius: 12px; 
+      border: 1px solid #4B5563; 
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3); 
+      width: 100%; 
+      max-width: 1000px; 
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+    table th, table td {
+      border: 1px solid #4B5563;
+      padding: 10px;
+      text-align: left;
+    }
+    table th {
+      background: #374151;
+      font-weight: bold;
+    }
+    .action-btn {
+      background: #2563EB;
+      color: #FFF;
+      padding: 6px 12px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      margin-right: 5px;
+      font-size: 14px;
+    }
+    .action-btn.danger {
+      background: #DC2626;
+    }
+  </style>
+
+  <!-- Supabase UMD SDK -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+
+  <!-- Enhanced auth with OllyPass -->
+  <script src="js/auth-enhanced.js"></script>
+</head>
+<body>
+  <div class="admin-container">
+    <h1>OllyTracker Admin Console</h1>
+    <p class="tagline">Manage users, trials, and OllyPass MFA</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Email</th>
+          <th>Full Name</th>
+          <th>Organization</th>
+          <th>Status</th>
+          <th>MFA</th>
+          <th>Trial Ends</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody id="user-list">
+        <!-- Rows injected dynamically by auth-enhanced.js -->
+      </tbody>
+    </table>
+
+    <div id="error-message" style="display:none; color:#F87171; margin-top:20px;"></div>
+    <div id="success-message" style="display:none; color:#34D399; margin-top:20px;"></div>
+  </div>
+
+  <script>
+    // Placeholder: actual user data + actions handled in auth-enhanced.js
+    document.addEventListener('DOMContentLoaded', () => {
+      const tbody = document.getElementById('user-list');
+      tbody.innerHTML = `
+        <tr>
+          <td>sample@agency.gov</td>
+          <td>Jane Doe</td>
+          <td>DOJ</td>
+          <td>Active</td>
+          <td>Enabled</td>
+          <td>2025-10-15</td>
+          <td>
+            <button class="action-btn">Reset MFA</button>
+            <button class="action-btn danger">Revoke</button>
+          </td>
+        </tr>
+      `;
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>OllyDaily - Waiting List</title>
+  <link rel="stylesheet" href="css/olly-common.css" />
+  <link rel="stylesheet" href="css/login.css" />
+</head>
+
+<body>
+  <div class="login-container auth-container">
+    <!-- Branding -->
+    <div class="logo-header" style="text-align:center; margin-bottom:20px;">
+      <img src="assets/mosa-hero.png" alt="OllyTracker Security K9" style="height:80px; margin-right:20px;" />
+      <img src="assets/OllyTracker_Yacht you_Logo.png" alt="OllyTracker Logo" style="height:60px; vertical-align:middle;" />
+    </div>
+
+    <!-- Main Box -->
+    <div class="login-box">
+      <h2>OllyDaily Access</h2>
+      <p>
+        Investigative analytics are coming.<br/>
+        Join the waiting list for the upcoming launch and early access.
+      </p>
+
+      <!-- Feedback -->
+      <div id="error-message" style="display:none; color:#dc2626; margin-bottom:10px;"></div>
+      <div id="success-message" style="display:none; color:#16a34a; margin-bottom:10px;"></div>
+
+      <!-- Waiting List Form -->
+      <form id="waitinglist-form">
+        <input type="text" id="full_name" placeholder="Full Name" required />
+        <input type="text" id="organization" placeholder="Organization / Agency" />
+        <input type="email" id="email" placeholder="Email Address" required />
+        <button type="submit" class="btn-primary">Join Waiting List</button>
+      </form>
+
+      <p style="margin-top:15px; font-size:14px; color:#9CA3AF;">
+        Invite‑only access launches soon.<br/>
+        You’ll be notified when invited.
+      </p>
+    </div>
+  </div>
+
+  <!-- Supabase client already loaded in auth.js -->
+  <script src="js/auth.js"></script>
+  <script>
+    document.getElementById('waitinglist-form')?.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const form = e.target;
+
+      const fullName = form.querySelector('#full_name')?.value?.trim();
+      const organization = form.querySelector('#organization')?.value?.trim();
+      const email = form.querySelector('#email')?.value?.trim();
+
+      if (!email || !fullName) {
+        document.getElementById('error-message').textContent = "Full name and email are required.";
+        document.getElementById('error-message').style.display = "block";
+        return;
+      }
+
+      // 🍋 Garnish: capture referrer to track funnels (X, LinkedIn, Direct, etc.)
+      const referrer = document.referrer || 'direct';
+      const source = referrer.includes("twitter.com") ? "X"
+                   : referrer.includes("linkedin.com") ? "LinkedIn"
+                   : "direct";
+
+      try {
+        const { error } = await window.supabaseClient.from("waiting_list").insert({
+          fullname: fullName,
+          organization,
+          email,
+          source
+        });
+        if (error) throw error;
+
+        document.getElementById('error-message').style.display = "none";
+        document.getElementById('success-message').textContent = "✅ You’ve been added to the OllyDaily waiting list.";
+        document.getElementById('success-message').style.display = "block";
+
+        form.reset();
+      } catch (err) {
+        console.error("Waiting list error:", err);
+        document.getElementById('error-message').textContent =
+          "❌ Error adding to waiting list: " + (err.message || "Unknown error");
+        document.getElementById('error-message').style.display = "block";
+        document.getElementById('success-message').style.display = "none";
+      }
+    });
+  </script>
+</body>
+</html>
