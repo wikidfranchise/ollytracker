@@ -1,4 +1,4 @@
-// js/auth.js — Supabase v2 auth with alerts for debug
+// js/auth.js — Fixed typo in getElementById, with alerts for debug
 (() => {
   'use strict';
 
@@ -52,8 +52,8 @@
   })();
 
   function setupAuth(client) {
-    const loginForm = document.getElementOfId('login-form');
-    const registerForm = document.getElementById('register-form');
+    const loginForm = document.getElementById('login-form');  // Fixed typo: getElementById
+    const registerForm = document.getElementById('register-form');  // Fixed typo: getElementById
 
     function showMessage(text, isError = false) {
       const errorMsg = document.getElementById('error-message');
@@ -77,6 +77,55 @@
       if (!form) return;
       const inputs = form.querySelectorAll('input, button');
       inputs.forEach(input => input.disabled = disabled);
+    }
+
+    // LOGIN handler
+    async function handleLogin(e) {
+      e.preventDefault();
+      const form = e.target;
+
+      const email = form.querySelector('#email')?.value?.trim();
+      const password = form.querySelector('#password')?.value;
+
+      if (!email || !password) {
+        showMessage('Email and password are required', true);
+        return;
+      }
+
+      setFormDisabled(form, true);
+      showMessage('Signing in...');
+
+      try {
+        console.log('[Auth] Attempting login for:', email);
+        alert('[Debug] Starting login for ' + email);
+        const { data, error } = await client.auth.signInWithPassword({ email, password });
+
+        console.log('[Auth] Login response:', data, error);
+
+        if (error) {
+          console.error('[Auth] Login error:', error);
+          showMessage(error.message, true);
+          setFormDisabled(form, false);
+          return;
+        }
+
+        if (!data.session) {
+          showMessage('Authentication failed', true);
+          setFormDisabled(form, false);
+          return;
+        }
+
+        // SUCCESS - redirect cleanly
+        showMessage('✅ Signed in successfully! Redirecting...');
+        setTimeout(() => {
+          window.location.replace('/OllyStream.html');
+        }, 800);
+
+      } catch (err) {
+        console.error('[Auth] Login failed:', err);
+        showMessage('Login failed: ' + err.message, true);
+        setFormDisabled(form, false);
+      }
     }
 
     // REGISTER handler
@@ -140,6 +189,12 @@
     }
 
     // Attach form handlers
+    if (loginForm) {
+      loginForm.addEventListener('submit', handleLogin);
+      console.log('[Auth] Login form handler attached');
+      alert('[Debug] Login form ready');
+    }
+
     if (registerForm) {
       registerForm.addEventListener('submit', handleRegister);
       console.log('[Auth] Register form handler attached');
