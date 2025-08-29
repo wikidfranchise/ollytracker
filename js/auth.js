@@ -38,6 +38,7 @@
   })();
 
   function setupAuth(client) {
+    const loginForm = document.getElementById('login-form');
     const registerForm = document.getElementById('register-form');
 
     function showMessage(text, isError = false) {
@@ -59,6 +60,49 @@
       if (!form) return;
       const inputs = form.querySelectorAll('input, button');
       inputs.forEach(input => input.disabled = disabled);
+    }
+
+    // LOGIN handler
+    async function handleLogin(e) {
+      e.preventDefault();
+      const form = e.target;
+
+      const email = form.querySelector('#email')?.value?.trim();
+      const password = form.querySelector('#password')?.value;
+
+      if (!email || !password) {
+        showMessage('Email and password are required', true);
+        return;
+      }
+
+      setFormDisabled(form, true);
+      showMessage('Signing in...');
+
+      try {
+        const { data, error } = await client.auth.signInWithPassword({ email, password });
+
+        if (error) {
+          showMessage(error.message, true);
+          setFormDisabled(form, false);
+          return;
+        }
+
+        if (!data.session) {
+          showMessage('Authentication failed', true);
+          setFormDisabled(form, false);
+          return;
+        }
+
+        // SUCCESS - redirect to root (main dashboard)
+        showMessage('Signed in successfully! Redirecting...');
+        setTimeout(() => {
+          window.location.replace('/');  // Changed to root URL
+        }, 1000);
+
+      } catch (err) {
+        showMessage('Login failed: ' + err.message, true);
+        setFormDisabled(form, false);
+      }
     }
 
     // REGISTER handler
@@ -103,10 +147,10 @@
           return;
         }
 
-        // SUCCESS - redirect
+        // SUCCESS - redirect to root (main dashboard)
         showMessage('Account created! Redirecting...');
         setTimeout(() => {
-          window.location.replace('/index.html');
+          window.location.replace('/');  // Changed to root URL
         }, 1000);
 
       } catch (err) {
@@ -115,9 +159,12 @@
       }
     }
 
+    if (loginForm) {
+      loginForm.addEventListener('submit', handleLogin);
+    }
+
     if (registerForm) {
       registerForm.addEventListener('submit', handleRegister);
     }
   }
 })();
-
