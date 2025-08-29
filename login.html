@@ -1,47 +1,187 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>OllyTracker - Login</title>
-  <link rel="stylesheet" href="css/olly-common.css" />
-  <link rel="stylesheet" href="css/login.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OllyTracker - Login</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #764ba2 100%);
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow-x: hidden;
+        }
+
+        .login-container {
+            max-width: 500px;
+            width: 90%;
+            background: rgba(0,0,0,0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 15px;
+            padding: 40px 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+        }
+
+        .logo-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .logo-header img {
+            height: 80px;
+            margin: 0 10px;
+        }
+
+        .logo-header .brand-logo {
+            filter: brightness(0) saturate(100%) invert(68%) sepia(89%) saturate(485%) hue-rotate(5deg) brightness(103%) contrast(106%);
+        }
+
+        h2 {
+            color: #ffd700;
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        p {
+            text-align: center;
+            opacity: 0.9;
+            margin-bottom: 30px;
+        }
+
+        #error-message, #success-message {
+            text-align: center;
+            margin-bottom: 15px;
+            padding: 10px;
+            border-radius: 8px;
+        }
+
+        #error-message {
+            background: rgba(220,38,38,0.2);
+            border: 1px solid rgba(220,38,38,0.5);
+        }
+
+        #success-message {
+            background: rgba(34,197,94,0.2);
+            border: 1px solid rgba(34,197,94,0.5);
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        input {
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.3);
+            color: white;
+            padding: 12px 15px;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        input:focus {
+            border-color: #ffd700;
+            outline: none;
+            box-shadow: 0 0 10px rgba(255,215,0,0.2);
+        }
+
+        input::placeholder {
+            color: rgba(255,255,255,0.6);
+        }
+
+        button {
+            background: #ffd700;
+            color: #333;
+            border: none;
+            padding: 12px;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 1rem;
+        }
+
+        button:hover {
+            background: #ffed4e;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(255,215,0,0.3);
+        }
+
+        button:disabled {
+            background: rgba(255,215,0,0.3);
+            cursor: not-allowed;
+        }
+
+        .register-link {
+            text-align: center;
+            margin-top: 20px;
+            opacity: 0.9;
+        }
+
+        .register-link a {
+            color: #ffd700;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .register-link a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 480px) {
+            .login-container {
+                padding: 30px 20px;
+            }
+
+            .logo-header img {
+                height: 60px;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
 </head>
-
 <body>
-  <div class="login-container auth-container">
-    <div class="logo-header" style="text-align:center; margin-bottom:20px;">
-      <img src="assets/mosa-hero.png"
-           alt="Mosa - OllyTracker Security K9"
-           style="height:80px; margin-right:20px;" />
-      <img src="assets/OllyTracker_Yacht you_Logo.png"
-           alt="OllyTracker Logo"
-           style="height:60px; vertical-align:middle;" />
+    <div class="login-container">
+        <div class="logo-header">
+            <img src="assets/mosa-hero.png" alt="Mosa - OllyTracker Security K9">
+            <img src="assets/OllyTracker_Yacht_Logo.png" alt="OllyTracker Logo" class="brand-logo">
+        </div>
+
+        <h2>Welcome Back</h2>
+        <p>Log in to continue your investigation</p>
+
+        <div id="error-message" style="display:none;"></div>
+        <div id="success-message" style="display:none;"></div>
+
+        <form id="login-form">
+            <input type="email" id="email" placeholder="Email Address" required autocomplete="off">
+            <input type="password" id="password" placeholder="Password" required autocomplete="new-password">
+            <button type="submit">Log In</button>
+        </form>
+
+        <p class="register-link">
+            Don't have an account? <a href="register.html">Register</a>
+        </p>
     </div>
 
-    <div class="login-box">
-      <h2>Welcome Back</h2>
-      <p>Log in to continue your investigation.</p>
-
-      <div id="error-message" style="display:none; color:#dc2626; margin-bottom:10px;"></div>
-      <div id="success-message" style="display:none; color:#16a34a; margin-bottom:10px;"></div>
-
-      <!-- ❌ Removed inline onsubmit -->
-      <!-- ✅ auth.js handles form -->
-      <form id="login-form">
-        <input type="email" id="email" placeholder="Email Address" required />
-        <input type="password" id="password" placeholder="Password" required />
-        <button type="submit" class="btn-primary">Log In</button>
-      </form>
-
-      <p style="margin-top:15px;">
-        Don’t have an account?
-        <a href="register.html">Register</a>
-      </p>
-    </div>
-  </div>
-
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="js/auth.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/auth.js"></script>
 </body>
 </html>
