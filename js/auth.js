@@ -115,10 +115,10 @@
           return;
         }
 
-        // SUCCESS - redirect cleanly
+        // SUCCESS - redirect cleanly to the correct main page
         showMessage('✅ Signed in successfully! Redirecting...');
         setTimeout(() => {
-          window.location.replace('/OllyStream.html');
+          window.location.replace('/OllyStream.html');  // Fixed: Use your actual main file name
         }, 800);
 
       } catch (err) {
@@ -175,10 +175,10 @@
           return;
         }
 
-        // SUCCESS - redirect
+        // SUCCESS - redirect cleanly to the correct main page
         showMessage('✅ Account created! Redirecting...');
         setTimeout(() => {
-          window.location.replace('/OllyStream.html');
+          window.location.replace('/OllyStream.html');  // Fixed: Use your actual main file name
         }, 800);
 
       } catch (err) {
