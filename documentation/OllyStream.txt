@@ -1,0 +1,37 @@
+What OllyStream DoesOllyStream is a web-based application (implemented as a single HTML file with embedded CSS and JavaScript) that serves as the landing page for the OllyTracker suite. It provides a real-time stream of SEC (U.S. Securities and Exchange Commission) filings from the EDGAR database, focusing on live updates and interactive monitoring. Designed to run continuously while the browser tab is open, it acts as a dashboard for tracking corporate disclosures, with features tailored for users like investors, journalists, and analysts. It's the third engine in the set of 8 data tools (after OllyTracker and OllyInsider).Core Functionality:Real-Time Streaming: Establishes a WebSocket connection to an SEC API endpoint to receive live filings as they occur. Filings are processed and displayed immediately, with updates for daily stats (total filings, rate per minute, unique companies). It handles reconnection automatically if the connection drops, preserving data history without refreshing the page.
+Display and Views:Filing Cards: Shows incoming filings in a responsive grid of cards. Each card includes the ticker symbol (clickable for Yahoo Finance), company name, form type (with colorful badges and icons), filing time (as "Xm ago"), sector, CIK (Central Index Key), and period of report if available. Cards are prioritized (e.g., "urgent" for high-impact forms like 8-K or insider trades), with animations and hover effects. For insider filings (Forms 3, 4, 5), it highlights individual reporting details and offers an "Individual OTCV" button.
+Ticker Window: A scrolling horizontal ticker at the top displays recent filings with ticker, form type, and company name; clickable to view details.
+Trending Dashboard: A "Filing Diligence Dashboard" shows top active companies by recent filing count, displayed as chips with tickers and counts.
+Form Type Filters: A row of buttons for quick filtering by common SEC forms (e.g., 10-K, 8-K, Form 4), with glow effects and color-coding when filings of that type arrive. Includes an "All Forms" button to reset.
+
+Filtering and Customization:Dropdowns for exchange (e.g., NASDAQ, NYSE), index (e.g., S&P 500, Dow 30), and form type.
+Toggles for sound notifications, pausing the stream (buffers data), and clearing the display.
+"Show All" button to toggle between latest 4 filings and all received.
+
+Portfolio Management:Users can add/remove tickers to a personal portfolio via search, suggestions (e.g., Fortune 50 picks like AAPL, MSFT), or directly from cards.
+A side panel (toggleable) shows portfolio companies with stats (filings today, last hour), recent activity, and removal options.
+Portfolio-filter mode shows only filings from watched companies, with enhanced notifications (sounds, visual highlights) for matches.
+Stats update in real-time: company count, daily/hourly filings.
+
+OTCV (OllyTracker Curriculum Vitae):For companies: "Company Profile" buttons open the SEC EDGAR profile.
+For individuals in insider filings: "Individual OTCV" fetches and displays a complete history of their filings across companies, including career timeline (positions like Director/Officer, date ranges), form breakdowns, and recent filings. Supports search by CIK or name if CIK is unavailable. Presented in a modal with copy/export options.
+
+Notifications and Audio:Pop-up notifications for new filings, especially urgent or portfolio-related.
+Custom sounds: Beeps for general notifications, special tones for portfolio hits.
+Connection status panel with uptime timer.
+
+UI/UX Elements: Dark-themed gradient design with a yacht logo. Responsive for mobile/desktop, with animations (e.g., pulsing indicators, scrolling ticker). Includes a "Filing Intelligence" section (though minimally implemented in code) for categorizing filings (e.g., executive changes, insider trades).
+Technical Notes:Client-side only; no backend.
+Handles form variations (e.g., "Form 4/A" as insider).
+Limits display to 50 cards for performance, removing oldest.
+Integrates stock price fetching from an external API for real-time quotes in cards.
+
+OllyStream emphasizes real-time monitoring with personalization via portfolios and filters, making it a dynamic entry point for the suite. It processes filings for various forms, enhancing usability with quick links, stats, and history views.User Summary (for Documentation or Promo)OllyStream: Live SEC Filings DashboardOllyStream is your always-on gateway to real-time SEC filings, the starting point for the OllyTracker suite. It streams the latest corporate disclosures straight from the EDGAR database, helping you stay ahead of market moves without missing a beat—as long as your browser tab is open!Key Features:Live Stream: Watch new filings appear instantly in easy-to-read cards, with details like company ticker, form type (e.g., earnings reports or insider trades), and timing.
+Smart Filters: Sort by stock exchange, market index, or filing type with colorful buttons that light up when action happens.
+Portfolio Watch: Build a custom list of companies to track—get special alerts, sounds, and highlights whenever they file something new.
+Trending View: See which companies are most active right now in a quick dashboard.
+History Lookup: Dive into a company's or individual's full filing history with one click, including career timelines for insiders.
+Custom Controls: Turn on sounds for updates, pause the stream, or clear the view—plus real-time stats on filings and company activity.
+
+Ideal for spotting opportunities or risks in seconds—perfect for investors, researchers, and news hounds. Powered by OllyTracker™. © OllyTracker™ 2025.
+

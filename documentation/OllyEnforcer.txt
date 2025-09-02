@@ -1,0 +1,51 @@
+### What OllyEnforcer Does
+
+OllyEnforcer is a web-based application (built as a single HTML file with embedded CSS and JavaScript) that serves as a dashboard for monitoring specific types of SEC (U.S. Securities and Exchange Commission) Form 8-K filings, which report material corporate events. It is the sixth engine in the suite of 8 data tools (following OllyComp), targeted at users in law enforcement, academia, and investigative journalism for detecting potential corporate red flags like auditor switches, executive shakeups, or financial errors. The tool operates on-demand, querying historical and recent filings based on user inputs, and presents analyzed results in a tabbed interface.
+
+#### Core Functionality:
+- **Tabbed Interface**: Three main tabs for focused intelligence:
+  - **Auditor Changes (Item 4.01)**: Searches for auditor dismissals/resignations, disagreements, going concern issues, and internal control weaknesses.
+  - **Executive Changes (Item 5.02)**: Tracks departures, appointments, terminations, resignations, and related compensation packages, with filters for event types, positions (e.g., CEO, CFO), and red flags (e.g., disagreements, no consulting role post-departure).
+  - **Financial Restatements (Item 4.02)**: Identifies accounting errors, material weaknesses, SEC involvement, impacts on net income/revenue, and whether restatements are required.
+
+- **Search and Filtering**: Each tab includes inputs for date range (from/to) and company search (ticker, name, or CIK). Queries are built as Lucene strings (e.g., "item4_01:* AND filedAt:[2024-01-01 TO 2024-12-31] AND ticker:AAPL"). Supports wildcard searches and conditional logic (e.g., for CIK if numeric, ticker if short string, name otherwise).
+
+- **Data Fetching**: Uses POST requests to the SEC API endpoint ('https://api.sec-api.io/form-8k') with a hardcoded API key. Payloads include query, pagination (from:0, size:50), and sorting by filing date descending. Processes JSON responses, extracting item-specific details (e.g., item4_01 for auditors).
+
+- **Display and Analysis**:
+  - **Stats Row**: Dynamic grid showing totals (e.g., changes found, dismissals, terminations) with color-coded alerts for high-risk metrics.
+  - **Result Cards**: Renders filings as detailed cards with company info, filing/event dates, summaries, breakdowns (e.g., former/new auditor, reasons, red flags with warning boxes), and severity badges (e.g., "HIGH RISK" for material weaknesses).
+  - **Red Flag Detection**: Logic to highlight issues (e.g., terminations, disagreements, revenue decreases) with icons, colors, and dedicated warning sections.
+  - **Loading/Error Handling**: Spinners during fetches; error messages on failures.
+
+- **On-Load Defaults**: Sets date ranges (e.g., last 30 days for auditors, 90 for restatements) based on a hardcoded "current" date (2025-08-15).
+
+- **Testing Suite**: Includes a console-based test routine (runFullTest()) to verify all tabs/APIs, calculating stats and logging pass/fail for auditor, executive, and restatement endpoints.
+
+- **UI/UX Elements**: Orange-gradient theme with yacht logo. Responsive tabs, animations (fade-ins, spins), and SVG icons. No exports or advanced features; focuses on visualization and quick insights.
+
+- **Technical Notes**:
+  - Client-side only; no backend or persistence.
+  - Handles API variations (e.g., item-specific fields like personnelChanges array).
+  - Potential limitations: Fixed size:50, no pagination, assumes valid API structures.
+  - Includes fallback in executive/restatement tabs to auditor logic if needed (though not implemented).
+
+OllyEnforcer acts as an "early warning system" for corporate governance issues, aggregating and highlighting critical 8-K events for rapid analysis.
+
+### User Summary (for Documentation or Promo)
+
+**OllyEnforcer: SEC 8-K Intelligence Suite**
+
+OllyEnforcer is like your personal corporate watchdog, keeping an eye on the big warning signs that companies have to report to the government. As part of the OllyTracker suite, this tool scans official SEC filings (called Form 8-K) to spot things like sudden changes in auditors, bosses quitting or getting fired, or companies admitting they messed up their financial numbers. It's built for folks who need to catch problems early—think journalists hunting for scandals, researchers studying business trends, or investigators looking for clues in corporate behavior. Just enter a company name or date range, and it pulls up the details in seconds, highlighting the risky stuff so you don't have to dig through boring reports.
+
+Picture this: A major company like Apple or JPMorgan quietly switches accountants—could that mean trouble with their books? Or the CEO suddenly "resigns" with a fat severance package— is there drama behind the scenes? Maybe they confess to overcounting profits by millions, which could tank their stock. OllyEnforcer makes spotting these "red flags" easy with a simple dashboard split into three main views:
+
+- **Auditor Changes**: See when companies fire or switch their financial watchdogs. It flags scary stuff like disagreements over numbers, doubts about the company's survival ("going concern" issues), or weak internal checks that let errors slip through. You'll get stats on how many switches happened, plus details like who the old and new auditors are and why the change occurred.
+  
+- **Executive Changes**: Track the musical chairs in the C-suite—CEOs, CFOs, and board members coming or going. It breaks down departures (did they quit, retire, or get terminated?), new hires (with their pay packages), and bonuses for leaving. Filters let you focus on just CEOs or "red flag" cases like firings without notice or amid fights with the board. Stats show totals, like how many bosses were axed or if multiple people left at once (a bad sign).
+
+- **Financial Restatements**: Catch companies admitting they got their math wrong—things like inflating sales or hiding losses. It rates the severity (e.g., "CRITICAL" if the SEC caught them), shows impacts on profits or revenue, and notes if it's a big deal that requires fixing old reports. Stats highlight patterns, like how many involved weak controls or government probes.
+
+For each search, you pick dates (like last month or a full year) and optionally a company (by its stock ticker, name, or ID number). Results pop up as clear cards with summaries, key facts, and bold warnings for the sketchy parts—no jargon, just straightforward info like "Profits were overstated by $50M" or "Executive fired with $10M golden parachute." It's all from trusted SEC sources, so you know it's real.
+
+This tool is great for staying ahead—maybe you're watching for signs a stock might crash, researching why a company failed, or just curious about boardroom drama. No need for fancy skills; it's point-and-click simple, with quick stats up top to see the big picture at a glance. Powered by OllyTracker™. © OllyTracker™ 2025.

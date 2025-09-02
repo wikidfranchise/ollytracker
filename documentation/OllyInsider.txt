@@ -1,0 +1,44 @@
+### What OllyInsider Does
+
+OllyInsider is a web-based application (built as a single HTML file with embedded CSS and JavaScript) designed to query and analyze real-time insider trading filings from the U.S. Securities and Exchange Commission (SEC). It is the second engine in a suite of 8 data tools (following OllyTracker) aimed at law enforcement, academia, and investigative journalists. The tool focuses on "Insider Filing CIK Intelligence," where CIK refers to the Central Index Key—a unique identifier assigned by the SEC to companies and individuals for tracking filings.
+
+#### Core Functionality:
+- **Data Fetching**: Users select a year (2020–2025), month, form type (Form 3: Initial Ownership, Form 4: Change in Ownership, Form 5: Annual Statement, Form 144: Notice of Sale, or "All Forms"), and record limit (50–1,000 or "Unlimited" for the entire month). It queries SEC APIs (e.g., insider-trading and form-144 endpoints) using a hardcoded API key to retrieve filings in batches, handling large volumes (up to 10,000+ records) by chunking date ranges and paginating results to avoid API limits. Progress is shown via counters, chunk status, and a progress bar.
+  
+- **Display Views**:
+  - **Cards Grid (Default View)**: Renders filings as detailed cards in a responsive grid. Each card shows the form type, filing date, reporting person (individual insider) details (CIK, name, SEC links), issuer (company) details (CIK, name, ticker if available, with quick links to Yahoo Finance, Google Finance, TradingView, etc.), and a link to the full SEC filing. Initially displays 100 cards, with a "Load More" button for pagination to manage performance.
+  - **Boats Stream (Toggleable View)**: An animated "stream" of filings visualized as moving "boats" across a track (like a conveyor belt). Each boat summarizes a filing (form type, date, CIK, name, ticker), and clicking opens the SEC filing. Boats loop and are added at intervals for a dynamic, real-time feel. Limited to 50 boats max for performance.
+
+- **Calendar Integration**: A modal calendar allows users to browse by month/year, highlighting days with filings (with counts). Selecting a date filters the display to that day's filings, shows stats, and enables day-specific exports. Weekdays with zero filings are subtly highlighted as potential anomalies.
+
+- **Watchlist**: Users can add individuals (by CIK/name) or companies (by ticker/name) from cards to a watchlist. The watchlist modal displays them as clickable pills with links to SEC profiles or Yahoo Finance, grouped by type (individuals/companies), with a summary count.
+
+- **Export Options**: Exports all fetched data (or date-filtered subsets) as JSON, CSV, or Excel (using SheetJS library). Exports include metadata (e.g., export date, totals, form breakdowns) and a copyright notice. For large datasets ("Unlimited" mode), it handles chunked data seamlessly.
+
+- **UI/UX Elements**: Features a gradient-themed design with a yacht logo (tying into "OllyTracker Yacht Logo"). Includes notifications, animations (e.g., pulsing chunks, spinning loaders), and responsive layouts for mobile/desktop. Supports unlimited fetches by splitting queries into date-based chunks to bypass API limits (e.g., 10,000 records per query).
+
+- **Technical Notes**: 
+  - Relies on SEC API endpoints with rate-limiting delays (200ms between batches).
+  - Handles different API structures for Form 144 vs. others.
+  - No backend; all logic is client-side JavaScript.
+  - Potential limitations: Hardcoded API key (security risk if shared), no authentication, and assumes API availability.
+
+In essence, OllyInsider aggregates and visualizes SEC insider data for quick analysis, emphasizing CIK-based tracking of ownership changes and sales notices. It processes potentially massive datasets (e.g., entire months) while providing user-friendly filtering, viewing, and export tools.
+
+### User Summary (for Documentation or Promo)
+
+**OllyInsider: Unlimited Insider Filing Intelligence**
+
+OllyInsider is your powerful tool for real-time SEC insider trading analysis, part of the OllyTracker suite designed for investigators, researchers, and journalists. Track ownership changes and sales notices (Forms 3, 4, 5, and 144) with unlimited data access—no record limits!
+
+**Key Features:**
+- **Easy Querying**: Select a year, month, form type, and record limit (up to "Unlimited" for full-month data). Fetch results in seconds with progress tracking.
+- **Dual Views**: 
+  - **Card Grid**: Detailed, paginated cards with CIK info, names, tickers, and quick links to SEC filings, Yahoo Finance, TradingView, and more.
+  - **Stream View**: Watch filings "sail" across your screen in an animated boat stream for a dynamic overview—click any to view details.
+- **Calendar Explorer**: Browse filings by date with an interactive calendar. See daily counts, filter results, and export day-specific data.
+- **Watchlist**: Add insiders or companies with one click. View your list with direct links to profiles and charts.
+- **Exports**: Download all data as JSON, CSV, or Excel, complete with summaries and timestamps.
+- **Unlimited Power**: Handles massive datasets (10,000+ records) by smart chunking, ensuring you get every filing without hassle.
+
+Perfect for spotting trends in insider activity—start fetching and analyzing today! Powered by OllyTracker Analytics Engine. © OllyTracker™ 2025.

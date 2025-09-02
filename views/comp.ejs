@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title><%= title %></title>
+  <link rel="icon" type="image/png" href="/images/OllyTracker_Yacht_Logo.png">
+  <link rel="stylesheet" href="/css/olly.css">
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubuntu,sans-serif; background:linear-gradient(135deg,#2ecc71 0%,#27ae60 100%); min-height:100vh; color:#fff; }
+
+    /* HEADER */
+    .header-wrapper { text-align:center; padding:10px 20px 5px; }
+    .header-content { display:flex; align-items:center; justify-content:center; gap:30px; padding:0; }
+    .logo-img { height:200px; width:auto; filter:brightness(0) invert(1); }
+    .title-section { text-align:left; }
+    .page-title { color:#fff; margin:0; font-size:2.2em; font-weight:700; line-height:1; text-shadow:2px 2px 4px rgba(0,0,0,.3); }
+    .trademark { font-size:.5em; vertical-align:super; opacity:.8; }
+    .page-subtitle { color:#fff; font-size:1.1em; opacity:.95; margin-top:5px; line-height:1.2; }
+    .page-tagline { color:#fff; font-size:.85em; opacity:.9; margin-top:3px; }
+
+    /* NAV */
+    .nav-bar { display:flex; justify-content:center; gap:8px; padding:8px 15px; background:rgba(0,0,0,.25); flex-wrap:wrap; margin-bottom:15px; }
+    .nav-link { background:rgba(255,255,255,.1); border:1px solid rgba(255,255,255,.2); color:#fff; padding:8px 14px; border-radius:20px; text-decoration:none; font-weight:600; font-size:13px; display:inline-block; transition:all .3s ease; }
+    .nav-link:hover { background:rgba(255,255,255,.2); transform:translateY(-1px); }
+    .nav-link.active { background:#fff; color:#27ae60; border:1px solid #fff; }
+
+    /* LAYOUT */
+    .container { max-width:1600px; margin:0 auto; padding:10px 20px 0; }
+
+    /* STATS + QUICK BUTTONS */
+    .shocking-stats { background:rgba(255,255,255,.95); border-radius:10px; padding:8px; margin-bottom:10px; box-shadow:0 5px 15px rgba(0,0,0,.2); animation:pulse 3s infinite; }
+    .shocking-stats h2 { color:#ff6b6b; margin-bottom:6px; font-size:1em; text-align:center; }
+    .stats-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(120px,1fr)); gap:6px; }
+    .shock-stat { background:linear-gradient(135deg,#667eea 0%,#764ba2 100%); color:#fff; padding:6px; border-radius:8px; text-align:center; transition:transform .3s ease; }
+    .shock-stat:hover { transform:scale(1.05); }
+    .shock-number { font-size:1.1em; font-weight:700; margin-bottom:2px; }
+    .shock-label { font-size:.65em; opacity:.9; }
+
+    .top-quick-buttons { background:rgba(255,255,255,.95); border-radius:10px; padding:8px; margin-bottom:10px; box-shadow:0 4px 15px rgba(0,0,0,.1); }
+    .top-quick-buttons h4 { color:#27ae60; font-size:.9em; margin-bottom:6px; text-align:center; }
+    .quick-btn { background:linear-gradient(135deg,#ffd700 0%,#ffc107 100%); color:#000; border:none; padding:5px 8px; border-radius:15px; cursor:pointer; font-size:.75em; font-weight:600; transition:all .3s ease; box-shadow:3px 3px 8px rgba(102,126,234,.4); }
+    .quick-btn:hover { transform:translateY(-2px); box-shadow:5px 5px 12px rgba(102,126,234,.5); background:linear-gradient(135deg,#ffed4e 0%,#ffd700 100%); }
+    .quick-btn-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(130px,1fr)); gap:5px; }
+
+    .leaderboard { background:#fff; border-radius:10px; padding:10px; margin-bottom:12px; box-shadow:0 4px 15px rgba(0,0,0,.1); }
+    .leaderboard h3 { color:#27ae60; margin-bottom:8px; font-size:1em; }
+    .leader-item { display:flex; align-items:center; padding:5px; margin:3px 0; background:#f8f9fa; border-radius:6px; transition:all .3s ease; cursor:pointer; }
+    .leader-item:hover { transform:translateX(3px); background:linear-gradient(to right,#e8f5e9,#f8f9fa); box-shadow:0 2px 8px rgba(0,0,0,.1); }
+    .leader-rank { font-size:.95em; font-weight:700; margin-right:8px; color:#27ae60; min-width:22px; }
+    .leader-info { flex:1; }
+    .leader-info a { text-decoration:none; color:#2c3e50; font-weight:600; font-size:.9em; transition:color .2s ease; }
+    .leader-info a:hover { color:#3498db; text-decoration:underline; }
+    .leader-info .leader-meta { font-size:.7em; color:#666; }
+    .leader-comp { font-size:.9em; font-weight:700; color:#2ecc71; }
+
+    .results-container { display:grid; gap:10px; margin-bottom:15px; }
+    .exec-card { background:#fff; border-radius:8px; padding:12px; box-shadow:0 4px 15px rgba(0,0,0,.1); animation:slideIn .5s ease; transition:all .3s ease; border-left:3px solid #ffd700; }
+    .exec-card.mega-comp { background:linear-gradient(to right,#fff5e6,#ffe0b3); border-left-color:#ff6b6b; }
+    .exec-card.zero-comp { background:#f0f8ff; border-left-color:#3498db; }
+    .exec-card:hover { transform:translateY(-3px); box-shadow:0 8px 25px rgba(0,0,0,.15); }
+
+    .exec-header { display:flex; justify-content:space-between; align-items:start; margin-bottom:10px; padding-bottom:8px; border-bottom:1px solid #f0f0f0; }
+    .exec-info h3 { color:#2c3e50; font-size:1.1em; margin-bottom:3px; }
+    .exec-position { color:#7f8c8d; font-size:.85em; margin-bottom:3px; }
+    .exec-company { display:inline-block; background:linear-gradient(135deg,#3498db 0%,#2980b9 100%); color:#fff; padding:3px 10px; border-radius:15px; font-weight:700; font-size:.75em; margin-top:3px; transition:all .3s ease; }
+    .exec-company:hover { background:linear-gradient(135deg,#2980b9 0%,#3498db 100%); transform:scale(1.05); }
+    .total-comp { text-align:right; }
+    .total-label { color:#666; font-size:.75em; }
+    .total-amount { font-size:1.4em; font-weight:700; background:linear-gradient(135deg,#2ecc71 0%,#27ae60 100%); background-clip:text; -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+
+    .comp-breakdown { display:grid; grid-template-columns:repeat(auto-fit,minmax(100px,1fr)); gap:8px; margin:10px 0; }
+    .comp-item { background:#f8f9fa; padding:6px; border-radius:6px; text-align:center; border-left:2px solid #27ae60; }
+    .comp-item-label { font-size:.7em; color:#666; margin-bottom:2px; }
+    .comp-item-value { font-size:.85em; font-weight:700; color:#2c3e50; }
+
+    .comp-chart { margin-top:10px; padding:8px; background:#f8f9fa; border-radius:6px; }
+    .comp-chart h4 { font-size:.8em; margin-bottom:6px; color:#666; }
+
+    .bar-container { display:flex; width:100%; height:30px; border-radius:5px; overflow:hidden; box-shadow:inset 0 1px 3px rgba(0,0,0,.1); }
+    .bar-segment { position:relative; display:flex; align-items:center; justify-content:center; transition:all .3s ease; animation:growSegment 1s ease forwards; }
+    .bar-segment:hover { filter:brightness(1.1); z-index:10; }
+    .bar-salary{background:linear-gradient(90deg,#3498db,#2980b9);} .bar-bonus{background:linear-gradient(90deg,#e74c3c,#c0392b);} .bar-stock{background:linear-gradient(90deg,#2ecc71,#27ae60);} .bar-options{background:linear-gradient(90deg,#f39c12,#e67e22);} .bar-other{background:linear-gradient(90deg,#9b59b6,#8e44ad);}
+    .bar-label { color:#fff; font-size:.65em; font-weight:600; padding:0 4px; text-shadow:0 1px 2px rgba(0,0,0,.3); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+
+    .bars-individual { margin-top:8px; }
+    .bar-individual { height:18px; margin:4px 0; border-radius:3px; position:relative; background:#e0e0e0; overflow:hidden; }
+    .bar-fill { height:100%; position:absolute; left:0; top:0; display:flex; align-items:center; padding-left:6px; animation:growWidth 1s ease forwards; }
+
+    @keyframes growSegment { from { flex-grow:0; opacity:0; } to { opacity:1; } }
+    @keyframes growWidth { from { width:0; } }
+
+    .year-badge { background:#ff6b6b; color:#fff; padding:3px 8px; border-radius:12px; font-size:.75em; font-weight:700; }
+
+    .search-panel { background:#fff; border-radius:12px; padding:15px; box-shadow:0 8px 25px rgba(0,0,0,.2); margin-bottom:15px; animation:fadeInUp .8s ease; }
+    .quick-searches { margin-bottom:12px; padding:12px; background:#f8f9fa; border-radius:10px; max-height:300px; overflow-y:auto; }
+    .quick-searches::-webkit-scrollbar{ width:5px; } .quick-searches::-webkit-scrollbar-track{ background:#f1f1f1; border-radius:10px; } .quick-searches::-webkit-scrollbar-thumb{ background:linear-gradient(135deg,#667eea 0%,#764ba2 100%); border-radius:10px; }
+    .quick-searches h3 { color:#27ae60; margin:10px 0 8px; font-size:.9em; border-bottom:1px solid #27ae60; padding-bottom:2px; }
+    .quick-searches h3:first-child { margin-top:0; }
+
+    .search-options { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:10px; margin-bottom:12px; }
+    .search-section { padding:10px; border-radius:8px; background:#f8f9fa; transition:all .3s ease; }
+    .search-section:hover { transform:translateY(-2px); box-shadow:0 4px 12px rgba(0,0,0,.1); }
+    .search-section h3 { color:#27ae60; margin-bottom:8px; font-size:.9em; }
+    .input-group { margin-bottom:8px; }
+    .input-group label { display:block; font-size:.75em; color:#666; margin-bottom:2px; }
+    input[type="text"], input[type="number"], select { width:100%; padding:6px; border:1px solid #e0e0e0; border-radius:5px; font-size:.85em; transition:all .3s ease; }
+    input:focus, select:focus { outline:none; border-color:#27ae60; box-shadow:0 0 0 2px rgba(39,174,96,.1); }
+
+    .search-btn { background:#1e5e3a; color:#fff; border:none; padding:10px 25px; border-radius:20px; font-size:.9em; font-weight:600; cursor:pointer; transition:all .3s ease; display:block; margin:10px auto; box-shadow:3px 3px 10px rgba(0,0,0,.3); }
+    .search-btn:hover { transform:translateY(-2px); background:#27ae60; box-shadow:5px 5px 15px rgba(0,0,0,.4); }
+
+    .loading { text-align:center; padding:30px; color:#fff; font-size:1em; }
+    .spinner { display:inline-block; width:40px; height:40px; border:3px solid rgba(255,255,255,.3); border-radius:50%; border-top-color:#fff; animation:spin 1s ease-in-out infinite; }
+
+    @keyframes spin { to { transform:rotate(360deg); } }
+    @keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:.9;} }
+    @keyframes fadeInDown { from { opacity:0; transform:translateY(-20px);} to { opacity:1; transform:translateY(0);} }
+    @keyframes fadeInUp { from { opacity:0; transform:translateY(20px);} to { opacity:1; transform:translateY(0);} }
+    @keyframes slideIn { from { opacity:0; transform:translateX(-20px);} to { opacity:1; transform:translateX(0);} }
+
+    .error-message { background:#ff4757; color:#fff; padding:12px; border-radius:6px; margin:15px 0; text-align:center; }
+
+    /* RESPONSIVE */
+    @media (max-width:768px){
+      .header-content{ flex-direction:column; gap:15px; }
+      .logo-img{ height:150px; }
+      .title-section{ text-align:center; }
+      .page-title{ font-size:1.8em; }
+      .page-subtitle{ font-size:1em; }
+      .nav-link{ padding:6px 12px; font-size:12px; }
+      .search-options{ grid-template-columns:1fr; }
+      .comp-breakdown{ grid-template-columns:1fr 1fr; }
+      .quick-btn-grid{ grid-template-columns:repeat(auto-fit,minmax(110px,1fr)); }
+      .stats-grid{ grid-template-columns:repeat(2,1fr); }
+    }
+    @media (max-width:480px){
+      .logo-img{ height:120px; }
+      .page-title{ font-size:1.3em; }
+      .page-subtitle{ font-size:.9em; }
+      .nav-bar{ gap:5px; padding:6px 10px; }
+    }
+  </style>
+</head>
+<body>
+  <!-- HEADER -->
+  <div class="header-wrapper header--comp">
+    <div class="header-content">
+      <img src="/images/OllyTracker_Yacht_Logo.png" alt="OllyTracker" class="logo-img">
+      <div class="title-section">
+        <h1 class="page-title">💵 OllyComp<span class="trademark">™</span></h1>
+        <p class="page-subtitle">Executive Compensation Exposer</p>
+        <p class="page-tagline">Follow the Money • Expose the Excess</p>
+      </div>
+    </div>
+  </div>
+
+  <nav class="nav-bar">
+    <a href="/stream" class="nav-link">⚡ OllyStream</a>
+    <a href="/tracker" class="nav-link">📈 OllyTracker</a>
+    <a href="/cortex" class="nav-link">🧠 OllyCortex</a>
+    <a href="/insider" class="nav-link">🕵️ OllyInsider</a>
+    <a href="/comp" class="nav-link active">💵 OllyComp</a>
+    <a href="/enforcer" class="nav-link">⚖️ OllyEnforcer</a>
+    <a href="/lookup" class="nav-link">🔍 OllyLookup</a>
+    <a href="/auditor" class="nav-link">📊 OllyAuditor</a>
+  </nav>
+
+  <div class="container">
+    <div class="shocking-stats">
+      <h2>🚨 Live Tracker</h2>
+      <div class="stats-grid">
+        <div class="shock-stat"><div class="shock-number" id="topPay">$0</div><div class="shock-label">Highest Single Pay</div></div>
+        <div class="shock-stat"><div class="shock-number" id="avgCeo">$0</div><div class="shock-label">Average CEO Pay</div></div>
+        <div class="shock-stat"><div class="shock-number" id="payRatio">0:1</div><div class="shock-label">CEO:Worker Ratio</div></div>
+        <div class="shock-stat"><div class="shock-number" id="zeroDollar">0</div><div class="shock-label">$1 Salary CEOs</div></div>
+      </div>
+    </div>
+
+    <div class="top-quick-buttons">
+      <h4>⚡ The Pinnacle - Most Popular Searches</h4>
+      <div class="quick-btn-grid">
+        <button class="quick-btn" onclick="searchQuery('year:2024 AND total:[100000000 TO *]')">💎 $100M+ Club</button>
+        <button class="quick-btn" onclick="searchQuery('year:2024 AND total:[50000000 TO 100000000]')">🏆 $50-100M Elite</button>
+        <button class="quick-btn" onclick="searchQuery('year:2024 AND salary:[0 TO 1]')">🎭 $1 Salary Heroes</button>
+        <button class="quick-btn" onclick="searchQuery('year:2024 AND position:*CEO* AND total:[10000000 TO *]')">👑 Mega-Paid CEOs</button>
+        <button class="quick-btn" onclick="searchQuery('year:2024 AND ticker:(AAPL OR MSFT OR GOOGL OR AMZN OR META)')">🖥️ Big Tech Giants</button>
+        <button class="quick-btn" onclick="searchQuery('year:2024 AND ticker:(JPM OR BAC OR WFC OR GS OR MS)')">🦺 Wall Street Banks</button>
+      </div>
+    </div>
+
+    <div id="leaderboard" class="leaderboard" style="display:none;">
+      <h3>🏆 Compensation Leaderboard - Click to Jump to Details</h3>
+      <div id="leaderboardContent"></div>
+    </div>
+
+    <div class="search-panel">
+      <div class="search-options">
+        <div class="search-section">
+          <h3>🏢 Company</h3>
+          <div class="input-group"><label>Ticker Symbol</label><input type="text" id="ticker" placeholder="e.g., AAPL"></div>
+          <div class="input-group"><label>CIK Number</label><input type="text" id="cik" placeholder="e.g., 1318605"></div>
+        </div>
+        <div class="search-section">
+          <h3>👤 Executive</h3>
+          <div class="input-group"><label>Name</label><input type="text" id="execName" placeholder="e.g., Tim Cook"></div>
+          <div class="input-group">
+            <label>Position</label>
+            <select id="position">
+              <option value="">All Positions</option><option value="CEO">CEO</option><option value="CFO">CFO</option><option value="COO">COO</option><option value="CTO">CTO</option><option value="President">President</option>
+            </select>
+          </div>
+        </div>
+        <div class="search-section">
+          <h3>💸 Compensation</h3>
+          <div class="input-group"><label>Min Total</label><input type="number" id="minComp" placeholder="1000000"></div>
+          <div class="input-group"><label>Max Total</label><input type="number" id="maxComp" placeholder="100000000"></div>
+        </div>
+        <div class="search-section">
+          <h3>📅 Year</h3>
+          <div class="input-group"><label>From Year</label><input type="number" id="fromYear" min="2005" max="2024" value="2024"></div>
+          <div class="input-group"><label>To Year</label><input type="number" id="toYear" min="2005" max="2024" value="2024"></div>
+        </div>
+      </div>
+
+      <button class="search-btn" onclick="performSearch()">Search Executive Compensation</button>
+
+      <div class="quick-searches">
+        <h3>💼 By Position</h3>
+        <div class="quick-btn-grid">
+          <button class="quick-btn" onclick="searchQuery('year:2024 AND position:*CEO* AND total:[10000000 TO *]')">👑 Mega-Paid CEOs</button>
+          <button class="quick-btn" onclick="searchQuery('year:2024 AND position:*CFO*')">💰 All CFOs</button>
+          <button class="quick-btn" onclick="searchQuery('year:2024 AND position:*President*')">🎖️ Presidents</button>
+          <button class="quick-btn" onclick="searchQuery('year:2024 AND position:*Chief Technology*')">💻 CTOs</button>
+          <button class="quick-btn" onclick="searchQuery('year:2024 AND position:*Legal* OR position:*Counsel*')">⚖️ Legal Chiefs</button>
+          <button class="quick-btn" onclick="searchQuery('year:2024 AND position:*Chairman*')">🪑 Board Chairs</button>
+        </div>
+
+        <h3>🏢 Industry Deep Dives</h3>
+        <div class="quick-btn-grid">
+          <button class="quick-btn" onclick="searchQuery('year:2024 AND ticker:(AAPL OR MSFT OR GOOGL OR AMZN OR META)')">🖥️ Big Tech Giants</button>
+          <button class="quick-btn" onclick="searchQuery('year:2024 AND ticker:(JPM OR BAC OR WFC OR GS OR MS)')">🦺 Wall Street Banks</button>
+          <button class="quick-btn" onclick="searchQuery('year:2024 AND ticker:(UNH OR JNJ OR PFE OR CVS OR ABBV)')">💊 Big Pharma</button>
+          <button class="quick-btn" onclick="searchQuery('year:2024 AND ticker:(XOM OR CVX OR COP OR SLB)')">🛢️ Oil & Gas</button>
+          <button class="quick-btn" onclick="searchQuery('year:2024 AND ticker:(TSLA OR F OR GM OR RIVN OR LCID)')">🚗 Auto Industry</button>
+          <button class="quick-btn" onclick="searchQuery('year:2024 AND ticker:(WMT OR COST OR TGT OR AMZN OR HD)')">🛒 Retail Giants</button>
+          <button class="quick-btn" onclick="searchQuery('year:2024 AND ticker:(BA OR LMT OR RTX OR NOC)')">✈️ Defense & Aerospace</button>
+          <button class="quick-btn" onclick="searchQuery('year:2024 AND ticker:(DIS OR NFLX OR WBD OR PARA)')">🎬 Media & Entertainment</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="resultsContainer" class="results-container"></div>
+  </div>
+
+  <script>
+    const MEDIAN_WORKER_SALARY = 75000;
+
+    function scrollToExec(uniqueId){
+      const el = document.querySelector(`[data-unique-id="${uniqueId}"]`);
+      if(!el) return;
+      el.scrollIntoView({ behavior:'smooth', block:'center' });
+      el.style.boxShadow='0 0 20px rgba(255,140,0,.6)';
+      setTimeout(()=>{ el.style.boxShadow='0 4px 15px rgba(0,0,0,.1)'; },2000);
+    }
+
+    async function searchQuery(query){
+      const resultsContainer=document.getElementById('resultsContainer');
+      resultsContainer.innerHTML='<div class="loading"><div class="spinner"></div><br>Loading executive compensation...</div>';
+      const requestBody={ query, from:"0", size:"50", sort:[{ total:{ order:"desc" } }] };
+      fetchAndDisplay(requestBody);
+    }
+
+    async function performSearch(){
+      const ticker=document.getElementById('ticker').value.trim();
+      const cik=document.getElementById('cik').value.trim();
+      const execName=document.getElementById('execName').value.trim();
+      const position=document.getElementById('position').value;
+      const minComp=document.getElementById('minComp').value;
+      const maxComp=document.getElementById('maxComp').value;
+      const fromYear=document.getElementById('fromYear').value;
+      const toYear=document.getElementById('toYear').value;
+
+      const resultsContainer=document.getElementById('resultsContainer');
+      const leaderboard=document.getElementById('leaderboard');
+      resultsContainer.innerHTML='<div class="loading"><div class="spinner"></div><br>Loading executive compensation...</div>';
+      leaderboard.style.display='none';
+
+      const q=[]; if(ticker) q.push(`ticker:${ticker.toUpperCase()}`); if(cik) q.push(`cik:${cik}`); if(execName) q.push(`name:*${execName}*`); if(position) q.push(`position:*${position}*`);
+      if(fromYear&&toYear) q.push(`year:[${fromYear} TO ${toYear}]`);
+      if(minComp&&maxComp) q.push(`total:[${minComp} TO ${maxComp}]`); else if(minComp) q.push(`total:[${minComp} TO *]`); else if(maxComp) q.push(`total:[* TO ${maxComp}]`);
+      if(q.length===0) q.push('year:[2023 TO 2024]');
+
+      fetchAndDisplay({ query:q.join(' AND '), from:"0", size:"50", sort:[{ total:{ order:"desc" } }] });
+    }
+
+    async function fetchAndDisplay(requestBody){
+      const resultsContainer=document.getElementById('resultsContainer');
+      try{
+        const resp=await fetch('/api/comp-search',{ method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(requestBody) });
+        if(!resp.ok) throw new Error(`HTTP error! status: ${resp.status}`);
+        const data=await resp.json();
+        displayResults(data);
+      }catch(err){
+        resultsContainer.innerHTML=`<div class="error-message">Error fetching data: ${err.message}. Please try again.</div>`;
+        console.error('Error:',err);
+      }
+    }
+
+    function displayResults(data){
+      const resultsContainer=document.getElementById('resultsContainer');
+      const leaderboard=document.getElementById('leaderboard');
+      if(!data||data.length===0){ resultsContainer.innerHTML='<div class="error-message">No compensation data found for the specified criteria.</div>'; return; }
+
+      let highestPay=0,totalCEOPay=0,ceoCount=0,zeroDollarCount=0;
+      data.forEach(exec=>{ if(exec.total>highestPay) highestPay=exec.total; if(exec.position&&exec.position.toLowerCase().includes('chief executive')){ totalCEOPay+=exec.total; ceoCount++; } if(exec.salary<=1) zeroDollarCount++; });
+      const avgCEOPay=ceoCount>0?totalCEOPay/ceoCount:0; const payRatio=Math.round(avgCEOPay/MEDIAN_WORKER_SALARY);
+
+      document.getElementById('topPay').textContent='$'+highestPay.toLocaleString();
+      document.getElementById('avgCeo').textContent='$'+Math.round(avgCEOPay).toLocaleString();
+      document.getElementById('payRatio').textContent=payRatio+':1';
+      document.getElementById('zeroDollar').textContent=zeroDollarCount;
+
+      if(data.length>0){
+        const topEarners=data.slice(0,5);
+        leaderboard.style.display='block';
+        document.getElementById('leaderboardContent').innerHTML=topEarners.map((exec,index)=>{
+          const uniqueId=`${exec.name}-${exec.ticker}-${exec.year}-${exec.total}`.replace(/[^a-zA-Z0-9-]/g,'_');
+          return `<div class="leader-item" onclick="scrollToExec('${uniqueId}')"><div class="leader-rank">#${index+1}</div><div class="leader-info"><a href="#${uniqueId}" onclick="event.stopPropagation();"><div>${exec.name}</div></a><div class="leader-meta">${(exec.position||'Executive').substring(0,30)}${exec.position&&exec.position.length>30?'...':''} at ${exec.ticker}</div></div><div class="leader-comp">$${exec.total.toLocaleString()}</div></div>`;
+        }).join('');
+      }
+
+      resultsContainer.innerHTML=data.map(exec=>{
+        const isMegaComp=exec.total>50000000, isZeroComp=exec.salary<=1;
+        let cardClass='exec-card'; if(isMegaComp) cardClass+=' mega-comp'; else if(isZeroComp) cardClass+=' zero-comp';
+        const totalComp=exec.total||1;
+        const salaryPct=(exec.salary/totalComp*100).toFixed(1);
+        const bonusPct=(exec.bonus/totalComp*100).toFixed(1);
+        const stockPct=(exec.stockAwards/totalComp*100).toFixed(1);
+        const optionsPct=(exec.optionAwards/totalComp*100).toFixed(1);
+        const otherPct=((exec.nonEquityIncentiveCompensation+exec.changeInPensionValueAndDeferredEarnings+exec.otherCompensation)/totalComp*100).toFixed(1);
+        const uniqueId=`${exec.name}-${exec.ticker}-${exec.year}-${exec.total}`.replace(/[^a-zA-Z0-9-]/g,'_');
+        const segments=[];
+        if(exec.salary>0) segments.push({cls:'bar-salary',pct:salaryPct,label:`Salary ${salaryPct}%`});
+        if(exec.bonus>0) segments.push({cls:'bar-bonus',pct:bonusPct,label:`Bonus ${bonusPct}%`});
+        if(exec.stockAwards>0) segments.push({cls:'bar-stock',pct:stockPct,label:`Stock ${stockPct}%`});
+        if(exec.optionAwards>0) segments.push({cls:'bar-options',pct:optionsPct,label:`Options ${optionsPct}%`});
+        const otherTotal=exec.nonEquityIncentiveCompensation+exec.changeInPensionValueAndDeferredEarnings+exec.otherCompensation;
+        if(otherTotal>0) segments.push({cls:'bar-other',pct:otherPct,label:`Other ${otherPct}%`});
+
+        return `<div class="${cardClass}" data-unique-id="${uniqueId}" id="${uniqueId}">
+          <div class="exec-header">
+            <div class="exec-info">
+              <h3>${exec.name}</h3>
+              <div class="exec-position">${exec.position||'Position not specified'}</div>
+              <a href="https://www.sec.gov/edgar/browse/?CIK=${exec.cik}" target="_blank" style="text-decoration:none;"><span class="exec-company">${exec.ticker} ↗</span></a>
+              <span class="year-badge">${exec.year}</span>
+            </div>
+            <div class="total-comp">
+              <div class="total-label">Total Comp</div>
+              <div class="total-amount">$${exec.total.toLocaleString()}</div>
+            </div>
+          </div>
+
+          <div class="comp-breakdown">
+            <div class="comp-item"><div class="comp-item-label">Base</div><div class="comp-item-value">$${exec.salary.toLocaleString()}</div></div>
+            <div class="comp-item"><div class="comp-item-label">Bonus</div><div class="comp-item-value">$${exec.bonus.toLocaleString()}</div></div>
+            <div class="comp-item"><div class="comp-item-label">Stock</div><div class="comp-item-value">$${exec.stockAwards.toLocaleString()}</div></div>
+            <div class="comp-item"><div class="comp-item-label">Options</div><div class="comp-item-value">$${exec.optionAwards.toLocaleString()}</div></div>
+            <div class="comp-item"><div class="comp-item-label">Other</div><div class="comp-item-value">$${(exec.nonEquityIncentiveCompensation+exec.otherCompensation).toLocaleString()}</div></div>
+          </div>
+
+          <div class="comp-chart">
+            <h4>Compensation Mix - Stacked View</h4>
+            <div class="bar-container">
+              ${segments.map(seg=>`<div class="bar-segment ${seg.cls}" style="flex-grow:${seg.pct};"><span class="bar-label">${parseFloat(seg.pct)>5?seg.label:(parseFloat(seg.pct)>2?seg.pct+'%':'')}</span></div>`).join('')}
+            </div>
+
+            <h4 style="margin-top:12px;">Individual Components</h4>
+            <div class="bars-individual">
+              ${exec.salary>0?`<div class="bar-individual"><div class="bar-fill bar-salary" style="width:${salaryPct}%;"><span class="bar-label">Salary ${salaryPct}%</span></div></div>`:''}
+              ${exec.bonus>0?`<div class="bar-individual"><div class="bar-fill bar-bonus" style="width:${bonusPct}%;"><span class="bar-label">Bonus ${bonusPct}%</span></div></div>`:''}
+              ${exec.stockAwards>0?`<div class="bar-individual"><div class="bar-fill bar-stock" style="width:${stockPct}%;"><span class="bar-label">Stock ${stockPct}%</span></div></div>`:''}
+              ${exec.optionAwards>0?`<div class="bar-individual"><div class="bar-fill bar-options" style="width:${optionsPct}%;"><span class="bar-label">Options ${optionsPct}%</span></div></div>`:''}
+              ${otherTotal>0?`<div class="bar-individual"><div class="bar-fill bar-other" style="width:${otherPct}%;"><span class="bar-label">Other ${otherPct}%</span></div></div>`:''}
+            </div>
+          </div>
+        </div>`;
+      }).join('');
+    }
+
+    // default view
+    window.onload=function(){ searchQuery('year:[2023 TO 2024] AND total:[100000000 TO *]'); };
+  </script>
+</body>
+</html>

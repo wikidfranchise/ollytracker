@@ -1,0 +1,42 @@
+### What OllyLocker Does
+
+OllyLocker is a web-based application (implemented as a single HTML file with embedded JavaScript and CSS, using vis.js for network graphs) that provides company lookup, detailed profiles ("OLLYCARD"), and dynamic board interlock visualization. It serves as an investigative tool in the OllyTracker suite, focusing on SEC data to map corporate board connections. The app has two modes: standard lookup (search and display company/board info) and "OllyLocker™" mode (activated via URL hash #ollylocker), which builds interactive force-directed graphs of director-company relationships as users navigate. It runs client-side, querying SEC APIs for real-time data, with no backend.
+
+#### Core Functionality:
+- **Company Search and Lookup**: Autocomplete search box queries sec-api.io/mapping for tickers/names/CIKs, handling delisted entries (marked visually). Results in dropdown with ticker, name, exchange; clickable to load OLLYCARD.
+
+- **OLLYCARD Display**: On selection, fetches Finnhub profile (name, exchange, industry, market cap, shares, IPO, website) and SEC directors data. Shows company title (ticker linked to custom loadFinnhubProfile), price (from Finnhub quote, with up/down/flat arrow), quick links (Yahoo, TradingView, StockCharts, Finviz, SeekingAlpha, Google Finance), CIK pill to SEC EDGAR. Includes "View Board" button to load directors.
+
+- **Board Loading and Display**: Fetches latest directors from sec-api.io/directors-and-board-members. Lists as clickable links with OllyScore (low/medium/high based on: network size from other boards [paginated fetch, 1-3 points for 1-4+ boards], committee membership [1-2 points for member/chair of key committees like audit/compensation], operational involvement [1-3 points for advisory/high-influence/operational roles]). Scores color-coded (green/yellow/red). "Verify Current Members" button cross-checks with latest DEF 14A proxy, hiding non-current/historical/exec-only positions, adding legend.
+
+- **Person Card (Inline)**: Clicking director opens details (position, age, class, since, committees, qualifications, experience, education, other boards, shareholdings). Fetches insider CIK from recent Forms 3/4/5 (batched search up to 200 filings), adds "Insider CIK" pill if found. Loads recent insider filings as colored buttons (Form 3 blue, 4 red, 5 yellow). Fetches "Other Boards" by name, lists as links (filtered to unique CIKs, excluding current).
+
+- **OllyLocker Mode**: URL-activated (#ollylocker&state=JSON), transforms UI (smaller margins, modified title/subtitle, hides notes). Adds network viz container (vis.js force-directed graph: box nodes for companies, ellipse for persons, edges for memberships). Initializes with state (company/person from URL). As users click boards/persons, dynamically adds nodes/edges (e.g., company_${cik}, person_${name}). "Download PNG" button exports graph as image.
+
+- **API Integrations**: sec-api.io for mappings, directors, insider-trading (POST JSON queries, paginated/batched). Finnhub for profiles/quotes. Handles errors with retries, fallbacks (e.g., name-based if CIK missing).
+
+- **Scoring Logic (OllyScore)**: Custom lite scoring: network size (other boards count, paginated fetch), committees (chair/member points for audit/comp/nominating/governance), position (advisory=1, chairman=2, operational like CEO/CFO=3). Thresholds: <3 low, 3-4 medium, >=5 high.
+
+- **UI/UX Elements**: Light/dark theme, responsive. Animations (pulse on OllyLocker button). Notes/warnings (e.g., "Price unavailable"). SEC links built dynamically.
+
+- **Technical Notes**:
+  - Client-side; state in variables (nodes/edges DataSets for vis.js).
+  - Debounced search (300ms). Pagination in scoring (size:50).
+  - Normalizes exchanges for Google Finance. Handles delisted visually.
+  - Limitations: API tokens hardcoded (security risk), max 50 results/search, assumes English names.
+
+OllyLocker enables exploratory analysis of board interlocks, dynamically graphing connections for corporate governance insights.
+
+### User Summary (for Documentation or Promo)
+
+**OllyLocker: Unlock Corporate Board Secrets**
+
+OllyLocker is like a magic key that opens up the hidden world of company boards, showing you who's connected to who in big business. Imagine you're a detective piecing together a puzzle: You start with one company, peek at its leaders, and suddenly see lines linking them to other firms—like a web of influence spanning the corporate universe. As part of the OllyTracker suite, this tool is built for curious minds, journalists sniffing out conflicts, researchers mapping power structures, or anyone fascinated by how the business elite overlaps. It's not just a search—it's an adventure where every click builds a live map of board "interlocks," those cozy ties where one person sits on multiple company boards, potentially raising eyebrows about independence or insider deals.
+
+Here's how it works in everyday terms: Type a company name or stock code (like "Tesla" or "TSLA") into the search box, and it suggests matches from official records—even old or defunct firms. Pick one, and boom—you get an "OLLYCARD," a neat snapshot with the company's basics (like market value, industry, when it went public), current stock price (with a green up arrow if it's rising or red down if dropping), and quick jumps to finance sites for charts and news. But the real fun starts with the "View Board" button: It lists the directors, each clickable, with a smart "OllyScore" rating—green for low-key members, yellow for moderately connected folks, red for power players with lots of ties (based on how many other boards they're on, key committees they chair like pay or audits, and if they're hands-on execs like CEOs).
+
+Click a director's name, and their own card pops up: age, role, start date, skills (why they were picked, like "tech whiz" or "finance guru"), committees (e.g., deciding boss pay), and shares they own. If they've filed stock trades, it shows recent ones as colored buttons (blue for starting, red for changes, yellow for yearly updates)—click to see the full SEC report. Even better, it lists "Other Boards" they're on, each a link to that company's OLLYCARD. Keep clicking, and you're hopping through the corporate world, uncovering chains like "This director from Company A also serves on B and C."
+
+Now, switch to "OllyLocker™ mode" (just add #ollylocker to the URL or click the pulsing button), and it turns into a visual powerhouse: A dynamic graph appears, with companies as blue boxes and people as red circles, connected by lines showing board seats. Start with one firm and person, and as you explore—clicking boards or names—the map grows automatically, like a family tree of business bigwigs. Spot clusters where a few folks control multiple giants? That's the "interlock" magic, helping reveal potential issues like groupthink or conflicts (e.g., a director voting on deals between linked companies). Download the graph as an image to save or share.
+
+It's all powered by real SEC data, so it's accurate and fresh—no guesses or outdated info. If a board looks old, hit "Verify Current Members" to cross-check with the latest filings and hide ex-directors. Scores help prioritize: Red means "watch this one" for heavy influencers. Whether you're tracking tech tycoons, spotting finance overlaps, or just geeking out on how the 1% networks, OllyLocker makes it interactive and eye-opening—turning dry reports into a connected story. Powered by OllyTracker™. © OllyTracker™ 2025.

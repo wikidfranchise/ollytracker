@@ -1,0 +1,29 @@
+What OllyCortex DoesOllyCortex is a web-based application (built as a single HTML file with embedded CSS and JavaScript) focused on extracting and analyzing board of directors information from U.S. Securities and Exchange Commission (SEC) filings. It is the fourth engine in the suite of 8 data tools (following OllyStream), designed for users in law enforcement, academia, and investigative journalism to query and compile director data for companies. The tool operates on-demand, processing user queries for specific companies and years, and supports building multi-company datasets.Core Functionality:Input and Querying: Users enter a ticker symbol, company name, or CIK (Central Index Key), along with a year (2018–2025). It includes an advanced search box with autocomplete dropdown for company lookup, fetching suggestions from SEC API mappings (by ticker, name, or CIK). Supports delisted companies and provides exchange info.
+Query Strategies: Offers four strategies to fetch data, handling variations in SEC filing formats:Enhanced Filter: Queries the directors API with a director count filter to ensure quality results.
+Form-Specific: Targets proxy statements and similar forms, with client-side filtering for valid director data.
+Director Changes: Uses Form 8-K Item 5.02 endpoint for appointment/departure info, falling back to enhanced if needed.
+Multi-Source: Combines the above for comprehensive coverage, prioritizing successful sources.
+
+Data Fetching: Uses SEC API endpoints (directors-and-board-members, form-8k-item-5-02, general query API) with a hardcoded API key. Requests are POST-based with JSON payloads for date ranges and tickers. Processes responses to filter valid director entries (e.g., non-empty names/positions).
+Display and Analysis:Shows stats (total filings, directors count, ticker, strategy).
+Filing selector dropdown to choose from multiple results for the year.
+Detailed filing info (company, date, accession, CIK, ticker, directors count).
+Interactive table of directors: name, position, age, class, election date, independent status (with color-coded badges), committees (as pills), qualifications (expandable list), and source link to SEC filing.
+Error handling with "dead query" responses, troubleshooting tips, and upgrade prompts if no data found.
+
+Research Collection: Users can add results to a collection for multi-company analysis. Displays saved items with previews, removal options, and bulk export (JSON/CSV). Clears collection on demand.
+Export Options: Exports selected filing data as JSON (processed or raw), CSV. Includes copy to clipboard.
+UI/UX Elements: Light gold-themed design with yacht logo. Responsive layout, modals for previews, banners for data integrity. Includes a company name lookup tool with searchable results.
+Technical Notes:Client-side only; no backend.
+Handles edge cases like no data (suggests alternatives), delisted companies.
+Uses debounce for search to optimize API calls.
+No real-time features; on-demand fetches.
+
+OllyCortex specializes in director intelligence, aggregating SEC data into structured views and collections for comparative analysis across companies and years.User Summary (for Documentation or Promo)OllyCortex: Board of Directors IntelligenceOllyCortex is your smart tool for digging into company boards, part of the OllyTracker suite. It pulls official director info from SEC filings, helping you see who's running the show at public companies—perfect for researchers, journalists, or anyone checking corporate leadership.Key Features:Easy Search: Enter a stock ticker, company name, or ID number and pick a year to get started. Smart suggestions pop up as you type.
+Director Details: Get a clear list of board members with their roles, ages, start dates, independence status, committee spots, and why they were chosen.
+Multiple Views: Choose from recent filings, see stats like board size, and switch between search methods for the best results.
+Build Collections: Save data from different companies in one spot to compare boards side-by-side.
+Exports: Download everything as simple files (like spreadsheets) to use elsewhere.
+
+Great for spotting board changes or building reports—quick, accurate info straight from official sources. Powered by OllyTracker™. © OllyTracker™ 2025.
+

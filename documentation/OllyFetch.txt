@@ -1,0 +1,42 @@
+
+
+### What OllyFetch Does
+
+OllyFetch is a web-based application (implemented as a single HTML file with embedded CSS and JavaScript) that functions as a comprehensive SEC (U.S. Securities and Exchange Commission) filing retrieval tool. It is the eighth and final engine in the suite of 8 data tools (labeled as "OllyFetch" in the code, though the nav suggests it might be "OllyAuditor" – assuming OllyFetch based on the query). Designed for investigators, it queries and downloads monthly batches of specific form types from EDGAR, with built-in chunking for large datasets, progressive loading, watchlists, advanced filtering, multiple views, pagination, and exports. It runs client-side, fetching data on-demand and displaying results interactively.
+
+#### Core Functionality:
+- **Input and Querying**: Users select year (2015–2025), month, and form type from a predefined map (e.g., 10-K, 8-K, Form D, 144, 3/4/5, 13F, 13D/G, etc.). Generates date range and builds Lucene queries (e.g., "formType:'10-K' AND filedAt:[2024-01-01 TO 2024-01-31]").
+
+- **API Integration and Chunking**: Uses form-specific endpoints (e.g., /form-d, /form-144, /insider-trading) or general / endpoint. Hardcoded API key for POST requests. For counts >10,000, splits into date-based chunks (9500 each), fetching progressively with batching (50 records/batch). Displays count info, progress, and chunk status. Normalizes responses into uniform structure (formType, filedAt, accessionNo, companyName, cik, ticker, linkToFiling, details).
+
+- **Progressive Display**: Loads and appends results in batches, updating UI in real-time. Supports grid (detailed cards), list (horizontal summaries), compact (minimal lines) views. Cards show company, CIK/ticker, filing date, form-specific details (e.g., offering amounts for Form D, holdings for 13F), and SEC links.
+
+- **Filtering and Sorting**: Post-fetch filters by search (company/ticker/CIK/form), form type (dynamic dropdown), date range (today/yesterday/week/month), sort (date asc/desc, company, form). Watchlist toggle filters to watched tickers.
+
+- **Watchlist Management**: Persistent (localStorage) ticker list. Add/remove via form, import/export JSON. Highlights watchlisted items in results. Clear all option.
+
+- **Pagination and Views**: For >50 results, shows top/bottom pagination with first/prev/next/last and numbered pages (with ellipsis). Per-page options (50/100/200/500/all). View toggle buttons.
+
+- **Exports**: JSON (with metadata), CSV (dynamic headers based on data fields, e.g., Total Offering for Form D), Excel (as CSV). Blob downloads with filenames including form/date.
+
+- **UI/UX Elements**: Dark cyberpunk theme with yacht logo (white-filtered). Loading spinners, notifications (slide-in), animations (slideIn, spin). Responsive grids.
+
+- **Technical Notes**:
+  - Client-side; no backend. State in arrays (allFetchedFilings, filteredFilings, watchlist).
+  - Handles form variations (e.g., SC 13D/G as one endpoint). Normalizes fields across APIs.
+  - Chunking/batching with delays (200ms) to avoid rate limits. Progressive UI updates.
+  - Limitations: Max 10k per query (chunks for more), fixed batch 50, no real-time.
+
+OllyFetch excels at bulk retrieval of targeted SEC forms, with user-friendly post-processing for analysis and export.
+
+### User Summary (for Documentation or Promo)
+
+**OllyFetch: The Investigator's Swiss Army Knife for SEC Filings**
+
+OllyFetch is your trusty digital detective dog, sniffing out and fetching official government filings on companies faster than you can say "subpoena." As the final piece in the OllyTracker suite, it's like having a K-9 unit at your fingertips—perfect for journalists chasing leads, researchers digging into corporate history, or anyone who needs to grab stacks of SEC documents without the hassle. Pick a year, month, and type of filing (like annual reports, insider trades, or private investments), hit "FETCH," and watch it pull in the goods, even if there are thousands of them.
+
+Imagine needing all the "Form D" private funding deals from last month or every "8-K" emergency update a company filed in 2023—OllyFetch handles it all. It smartly breaks big searches into manageable bites to get everything without missing a beat, showing progress along the way. Results pop up as easy-to-scan cards with company names, dates, key details (like how much money was raised or who sold stock), and direct links to the full files on the SEC site.
+
+But it's not just a grab-and-go tool—sort through finds by company, date, or form type; search for specifics like a ticker symbol; or switch views from detailed cards to quick lists. Build a "watchlist" of companies you're tracking—add tickers with a click, and filter results to just those. Spot something interesting? Export everything to files for spreadsheets or reports, ready to share or analyze further.
+
+Whether you're spotting shady insider sales, tracking startup funding, or compiling board changes, OllyFetch makes complex searches simple and reliable, all from trusted SEC sources. No more endless scrolling through databases—just point, fetch, and uncover. Powered by OllyTracker™. © OllyTracker™ 2025.

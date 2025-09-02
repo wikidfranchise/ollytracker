@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title><%= title %></title>
+
+  <link rel="icon" type="image/png" href="/images/mosa-hero.png">
+
+  <!-- Base CSS -->
+  <style>
+    :root {
+      --bg:#ffffff;
+      --card:#ffffff;
+      --ink:#111827;
+      --muted:#6b7280;
+      --accent:#0b63ce;
+      --green:#16a34a;
+      --yellow:#d97706;
+      --red:#b91c1c;
+      --line:#e5e7eb;
+    }
+    html,body{background:var(--bg);color:var(--ink);font-family:ui-sans-serif,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,"Helvetica Neue",Arial,"Noto Sans",sans-serif;margin:0;}
+    .wrap{max-width:980px;margin:20px auto 80px;padding:0 16px;}
+    h1{font-weight:800;font-size:28px;margin:0 0 16px;}
+    .sub{color:var(--muted);font-size:14px;margin:12px 0 18px;}
+
+    .searchBox{position:relative;}
+    .searchBox input{width:100%;padding:14px 16px;background:#fff;border:1px solid var(--line);border-radius:12px;color:var(--ink);outline:none;font-size:16px;}
+    .dropdown{position:absolute;top:54px;left:0;right:0;background:#fff;border:1px solid var(--line);border-radius:12px;overflow:hidden;box-shadow:0 8px 24px rgba(0,0,0,.08);z-index:10;}
+    .row{display:flex;align-items:center;gap:10px;padding:10px 14px;border-bottom:1px solid var(--line);cursor:pointer;position:relative;}
+    .row:last-child{border-bottom:none;}
+    .row:hover{background:#f3f4f6;}
+    .ticker{font-weight:700;color:var(--accent);font-variant-numeric:tabular-nums;}
+    .exch{color:var(--muted);font-size:12px;margin-left:auto;}
+
+    .card{margin-top:18px;background:#fff;border:1px solid var(--line);border-radius:16px;padding:16px;}
+    .cardTop{display:flex;align-items:flex-start;gap:12px;justify-content:space-between;flex-wrap:wrap;}
+    .title{font-weight:800;font-size:22px;}
+    .muted{color:var(--muted);}
+    .priceRow{display:flex;align-items:center;gap:10px;font-variant-numeric:tabular-nums;}
+    .arrow{font-weight:900;}
+    .up{color:var(--green);} .down{color:var(--red);} .flat{color:var(--muted);}
+
+    .actions{display:flex;align-items:center;gap:10px;margin-top:12px;flex-wrap:wrap;}
+    .btn{background:#eef2ff;border:1px solid #bcd7f5;color:#0b63ce;padding:10px 12px;border-radius:10px;cursor:pointer;font-weight:700;}
+    .btn:hover{filter:brightness(0.98);}
+    .btn:disabled{opacity:.55;cursor:not-allowed;}
+    .btn-green{background:#dcfce7;border-color:#86efac;color:#166534;}
+    .btn-yellow{background:#fff7ed;border-color:#fdba74;color:#92400e;}
+    .btn-red{background:#fee2e2;border-color:#fecaca;color:#7f1d1d;}
+    .btn-dark{background:#0b63ce;color:#fff;border:1px solid #084b9b;}
+    .legend{font-size:12px;color:#374151;margin-top:8px;display:flex;gap:12px;flex-wrap:wrap}
+    .chip{display:inline-flex;align-items:center;gap:6px;padding:4px 8px;border-radius:999px;border:1px solid var(--line);}
+    .chip .dot{width:8px;height:8px;border-radius:50%}
+    .chip.low .dot{background:var(--green);} .chip.medium .dot{background:var(--yellow);} .chip.high .dot{background:var(--red);}
+
+    .secLink{display:inline-flex;align-items:center;gap:8px;text-decoration:none;color:#0b63ce;border:1px solid #bcd7f5;padding:8px 10px;border-radius:10px;}
+    .secBadge{width:10px;height:10px;background:#1e90ff;border-radius:50%;box-shadow:0 0 8px #1e90ff;}
+
+    .badgeRow{display:flex;gap:8px;margin-top:10px;align-items:center;flex-wrap:wrap;justify-content:space-between}
+    .rightTop{display:flex;align-items:center;gap:12px;flex-wrap:wrap;justify-content:flex-end}
+
+    .profileCard{margin-top:12px;border:1px solid var(--line);border-radius:12px;padding:12px;background:#fff}
+    .rowKV{display:flex;gap:8px;justify-content:space-between;padding:4px 0;border-bottom:1px dashed var(--line)}
+    .rowKV:last-child{border-bottom:none}
+    .rowKV .k{color:var(--muted)} .rowKV .v{font-weight:600}
+    .boardTitle{font-weight:800;margin-top:16px;margin-bottom:8px}
+    .boardList{display:flex;flex-wrap:wrap;gap:8px}
+    .personLink{color:#0b63ce;text-decoration:none;border:1px solid #bcd7f5;padding:6px 10px;border-radius:999px;display:inline-flex;align-items:center;font-weight:700}
+    .personLink:hover{background:#f3f4f6}
+    .personLink.score-low{background-color:#e8f5e9;border-color:#a5d6a7;color:#1b5e20;}
+    .personLink.score-medium{background-color:#fff7ed;border-color:#fdba74;color:#7c2d12;}
+    .personLink.score-high{background-color:#fee2e2;border-color:#fecaca;color:#7f1d1d;font-weight:800;}
+
+    .personCard{margin-top:12px;border:1px solid var(--line);border-radius:12px;padding:12px;background:#fff}
+    .personTitle{font-weight:800;margin-bottom:8px}
+    .personRow{display:flex;gap:8px;justify-content:space-between;padding:4px 0;border-bottom:1px dashed var(--line)}
+    .personRow:last-child{border-bottom:none}
+    .personRow .k{color:var(--muted);min-width:100px;flex-shrink:0}
+    .personRow .v{font-weight:600;flex:1;word-wrap:break-word}
+
+    .tiny{font-size:12px;color:var(--muted);margin-top:6px;}
+  </style>
+
+  <!-- vis.js for OllyLocker (only used when hash starts with #ollylocker) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.js"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.css" rel="stylesheet" />
+</head>
+
+<body>
+  <div class="wrap">
+    <h1>OllyTracker</h1>
+    <div class="sub">Search a ticker or company, pick a result → full company card + board + verification + OllyLocker.</div>
+
+    <div class="searchBox">
+      <input id="q" type="text" placeholder="e.g., AAPL or Apple" autocomplete="off" />
+      <div id="dropdown" class="dropdown" style="display:none"></div>
+    </div>
+
+    <div id="card" class="card" style="display:none"></div>
+
+    <div class="tiny">Data sources: SEC API mapping, Finnhub quotes+profile, SEC directors dataset, Form 3/4/5 scan.</div>
+  </div>
+
+  <script>
+(() => {
+  // ---------- helpers ----------
+  const qs = (s) => document.querySelector(s);
+  const el = (t, cls) => { const n = document.createElement(t); if (cls) n.className = cls; return n; };
+  const fetchJSON = async (url, opts={}) => { const r = await fetch(url, opts); if (!r.ok) throw new Error('HTTP '+r.status); return r.json(); };
+
+  const input = qs('#q');
+  const dropdown = qs('#dropdown');
+  const card = qs('#card');
+
+  let debounceTimer = 0;
+  let lookupSeq = 0;
+  let currentCompany = null; // { cik, name, ticker }
+
+  // ======= Locker (hash) =======
+  const isLocker = location.hash.startsWith('#ollylocker');
+  let network = null, nodes = null, edges = null;
+  function ensureLockerViz() {
+    if (!isLocker || network) return;
+    const viz = document.createElement('div');
+    viz.id = 'ollylocker-viz';
+    viz.style.cssText = 'width:100%;height:500px;background:#0b1220;border:2px solid #ffd700;border-radius:12px;margin:12px 0;position:relative;box-shadow:0 4px 20px rgba(0,0,0,.3)';
+    viz.innerHTML = '<div id="network-container" style="width:100%;height:100%"></div>';
+    document.querySelector('.wrap').insertAdjacentElement('afterbegin', viz);
+    nodes = new vis.DataSet();
+    edges = new vis.DataSet();
+    network = new vis.Network(qs('#network-container'), { nodes, edges }, {
+      physics: { enabled: true, barnesHut: { gravitationalConstant: -2000, springLength: 110 } },
+      nodes: { font:{color:'#fff',strokeWidth:3,strokeColor:'#0b1220'}, borderWidth:2, margin:10 },
+      edges: { width:2, color:{ color:'#ffd700', highlight:'#ffed4e', hover:'#ffed4e' }, smooth:{enabled:true,type:'curvedCW',roundness:.1}, font:{size:10, color:'#ffd700', strokeWidth:2, strokeColor:'#0b1220'} },
+      interaction: { hover:true, zoomView:true, dragView:true, tooltipDelay:200 },
+      height:'100%', width:'100%'
+    });
+  }
+  function addToNetwork(type, data) {
+    if (!network) return;
+    if (type === 'company') {
+      const id = `company_${data.cik}`;
+      if (!nodes.get(id)) nodes.add({ id, label: data.ticker || data.name || 'Company', shape:'box',
+        color:{ background:'#3b82f6', border:'#60a5fa', highlight:{background:'#60a5fa',border:'#93bbfc'} },
+        font:{ color:'#fff', strokeWidth:3, strokeColor:'#0b1220' }
+      });
+    } else if (type === 'person') {
+      const id = `person_${data.name}`;
+      if (!nodes.get(id)) nodes.add({ id, label: data.name || 'Person', shape:'ellipse',
+        color:{ background:'#10b981', border:'#34d399', highlight:{background:'#34d399',border:'#6ee7b7'} },
+        font:{ color:'#fff', strokeWidth:3, strokeColor:'#0b1220' }
+      });
+    } else if (type === 'edge') {
+      const id = `${data.from}_${data.to}`;
+      if (!edges.get(id)) edges.add({ id, from:data.from, to:data.to, label:data.label||'' });
+    }
+  }
+  if (isLocker) ensureLockerViz();
+
+  // ---------- search ----------
+  input.addEventListener('input', () => {
+    const q = input.value.trim();
+    clearTimeout(debounceTimer);
+    if (!q) { dropdown.style.display = 'none'; return; }
+    debounceTimer = setTimeout(async () => {
+      const mySeq = ++lookupSeq;
+      try {
+        const results = await fetchJSON('/api/lookup?q=' + encodeURIComponent(q));
+        if (mySeq !== lookupSeq) return;
+        renderDropdown(results || []);
+      } catch { dropdown.style.display = 'none'; }
+    }, 250);
+  });
+  document.addEventListener('click', (e) => {
+    const box = qs('.searchBox');
+    if (!box.contains(e.target)) dropdown.style.display = 'none';
+  });
+  input.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+      const first = dropdown.querySelector('.row');
+      if (first) first.click();
+    }
+  });
+  function renderDropdown(results) {
+    if (!results.length) { dropdown.style.display = 'none'; return; }
+    dropdown.innerHTML = ''; dropdown.style.display = 'block';
+    results.slice(0,50).forEach(r => {
+      const row = el('div','row');
+      const t = el('span','ticker'); t.textContent = r.ticker || '';
+      const name = el('span'); name.textContent = r.name || 'Unknown';
+      const ex = el('span','exch'); ex.textContent = r.exchange || '';
+      row.appendChild(t); row.appendChild(name); row.appendChild(ex);
+      row.addEventListener('click', () => { dropdown.style.display='none'; selectCompany(r); });
+      dropdown.appendChild(row);
+    });
+    const footer = el('div','row');
+    footer.style.justifyContent = 'space-between';
+    footer.innerHTML = '<span><strong>OllyTracker</strong><sup>™</sup></span><span class="muted">SEC DATA PLATFORM</span>';
+    dropdown.appendChild(footer);
+  }
+
+  // ---------- company card ----------
+  async function selectCompany(item) {
+    card.style.display = 'block';
+    card.innerHTML = '';
+
+    const name = item.name || 'Unknown';
+    const ticker = item.ticker || '';
+    const cik = String(item.cik || '');
+    currentCompany = { cik, name, ticker };
+    if (isLocker) addToNetwork('company', currentCompany);
+
+    // top row
+    const top = el('div','cardTop');
+    const title = el('div','title');
+    title.textContent = ticker ? `${name} (${ticker})` : name;
+
+    const priceRow = el('div','priceRow');
+    priceRow.innerHTML = '<span class="muted">Loading price…</span>';
+
+    const rightTop = el('div','rightTop');
+    rightTop.appendChild(priceRow);
+
+    top.appendChild(title); top.appendChild(rightTop); card.appendChild(top);
+
+    // quick links & board entry
+    const badgeRow = el('div','badgeRow');
+    const secA = el('a','secLink');
+    const padded = cik.padStart(10,'0');
+    secA.href = `https://www.sec.gov/edgar/browse/?CIK=${padded}`;
+    secA.target = '_blank'; secA.rel = 'noopener noreferrer';
+    secA.innerHTML = '<span class="secBadge"></span><span>SEC (EDGAR)</span>';
+    const viewBoardBtn = el('button','btn btn-dark');
+    viewBoardBtn.id = 'viewBoardBtn';
+    viewBoardBtn.textContent = 'View Board';
+    viewBoardBtn.addEventListener('click', () => loadBoard(cik, name, ticker));
+    badgeRow.appendChild(secA); badgeRow.appendChild(viewBoardBtn);
+    card.appendChild(badgeRow);
+
+    // profile + board areas
+    const profileWrap = el('div'); profileWrap.id = 'profileWrap';
+    card.appendChild(profileWrap);
+    const boardWrap = el('div'); boardWrap.id = 'boardWrap';
+    card.appendChild(boardWrap);
+
+    // price
+    if (ticker) {
+      try {
+        const q = await fetchJSON('/api/quote?ticker=' + encodeURIComponent(ticker));
+        const c = Number(q.c), pc = Number(q.pc);
+        const arrow = isFinite(c)&&isFinite(pc) ? (c>pc?'up':c<pc?'down':'flat') : 'flat';
+        const sym = arrow==='up'?'▲':arrow==='down'?'▼':'■';
+        priceRow.className = `priceRow ${arrow}`;
+        priceRow.innerHTML = `<span class="arrow ${arrow}">${sym}</span><span>$${isFinite(c)?c.toFixed(2):'—'}</span><span class="muted">(prev $${isFinite(pc)?pc.toFixed(2):'—'})</span>`;
+      } catch { priceRow.innerHTML = '<span class="muted">Price unavailable</span>'; }
+    }
+
+    // profile
+    try {
+      if (ticker) {
+        const p = await fetchJSON('/api/profile?ticker=' + encodeURIComponent(ticker));
+        const cardP = el('div','profileCard');
+        const rows = [];
+        rows.push(['Name', p.name || name]);
+        if (p.exchange) rows.push(['Exchange', p.exchange]);
+        if (p.finnhubIndustry) rows.push(['Industry', p.finnhubIndustry]);
+        if (p.marketCapitalization) rows.push(['Market Cap', '$'+(p.marketCapitalization*1e6).toLocaleString()]);
+        if (p.shareOutstanding) rows.push(['Shares Out', (p.shareOutstanding*1e6).toLocaleString()]);
+        if (p.ipo) rows.push(['IPO', p.ipo]);
+        if (p.weburl) rows.push(['Website', `<a href="${p.weburl}" target="_blank" rel="noopener noreferrer">${p.weburl}</a>`]);
+        rows.forEach(([k,v]) => {
+          const row = el('div','rowKV'); const K = el('span','k'); const V = el('span','v');
+          K.textContent = k; V.innerHTML = v; row.appendChild(K); row.appendChild(V); cardP.appendChild(row);
+        });
+        profileWrap.innerHTML = ''; profileWrap.appendChild(cardP);
+      }
+    } catch {}
+  }
+
+  // ---------- board ----------
+  async function loadBoard(cik, companyName, ticker) {
+    const wrap = qs('#boardWrap');
+    wrap.innerHTML = '<div class="muted">Loading board…</div>';
+    try {
+      const data = await fetchJSON('/api/load-board', {
+        method:'POST', headers:{'Content-Type':'application/json'},
+        body: JSON.stringify({ cik, companyName, ticker })
+      });
+      const { dirs = [], scores = [] } = data || {};
+      wrap.innerHTML = '';
+
+      const header = el('div','boardTitle');
+      header.textContent = `Board of ${companyName} (${dirs.length} members)`;
+      wrap.appendChild(header);
+
+      const actionRow = el('div','actions');
+      const verifyBtn = el('button','btn btn-dark'); verifyBtn.id='boardVerifyBtn';
+      verifyBtn.textContent = '✓ Verify Current Members (DEF 14A)';
+      verifyBtn.onclick = () => verifyBoard(cik, companyName);
+      const legend = el('div','legend');
+      legend.innerHTML = '<span class="chip low"><span class="dot"></span> Low Risk</span><span class="chip medium"><span class="dot"></span> Medium</span><span class="chip high"><span class="dot"></span> High</span>';
+      actionRow.appendChild(verifyBtn);
+      actionRow.appendChild(legend);
+      wrap.appendChild(actionRow);
+
+      const list = el('div','boardList'); wrap.appendChild(list);
+
+      dirs.forEach((d, i) => {
+        const a = el('a','personLink');
+        a.href = '#';
+        const sc = scores[i] || { level:'low', points:0 };
+        a.classList.add(`score-${sc.level}`);
+        a.title = `OllyScore (Lite): ${sc.points} (${(sc.level||'').toUpperCase()})`;
+        a.textContent = d.name || 'Unknown';
+        a.addEventListener('click', (e) => { e.preventDefault(); openPersonCard(cik, d.name || ''); });
+        list.appendChild(a);
+        if (isLocker && currentCompany) {
+          addToNetwork('person', { name: d.name });
+          addToNetwork('edge', { from:`company_${currentCompany.cik}`, to:`person_${d.name}`, label:'Board Member' });
+        }
+      });
+
+      const personWrap = el('div'); personWrap.id = 'personWrap'; wrap.appendChild(personWrap);
+    } catch (e) {
+      console.error(e);
+      wrap.innerHTML = '<div class="tiny">Could not load board.</div>';
+    }
+  }
+
+  // verify board -> color current greens, hide others; keep risk colors on text (bold)
+  async function verifyBoard(cik, companyName) {
+    const wrap = qs('#boardWrap');
+    const btn = qs('#boardVerifyBtn');
+    if (!wrap || !btn) return;
+    btn.disabled = true; btn.textContent = 'Verifying…';
+    try {
+      const res = await fetchJSON('/api/verify-board', {
+        method:'POST', headers:{'Content-Type':'application/json'},
+        body: JSON.stringify({ cik })
+      });
+      const { currentNames = [], filedAt = null } = res || {};
+      const set = new Set(currentNames.map(n => n.toLowerCase()));
+      const links = [...wrap.querySelectorAll('.boardList .personLink')];
+      let hidden=0, shown=0;
+      links.forEach(a => {
+        const nm = (a.textContent||'').toLowerCase();
+        a.style.fontWeight = '800'; // keep bold text
+        if (set.has(nm)) {
+          shown++;
+          a.classList.add('btn-green'); // green background
+        } else {
+          a.style.display = 'none';
+          hidden++;
+        }
+      });
+      const title = wrap.querySelector('.boardTitle');
+      if (title) title.textContent = `Current Board per DEF 14A ${filedAt ? '('+new Date(filedAt).toLocaleDateString()+')' : ''} — ${shown} shown, ${hidden} hidden`;
+      btn.textContent = '↺ Show All';
+      btn.disabled = false;
+      btn.onclick = () => {
+        links.forEach(a => { a.style.display=''; a.classList.remove('btn-green'); a.style.fontWeight=''; });
+        if (title) title.textContent = title.textContent.replace(/ — .+$/, '');
+        btn.textContent = '✓ Verify Current Members (DEF 14A)';
+        btn.onclick = () => verifyBoard(cik, companyName);
+      };
+    } catch (e) {
+      console.error(e);
+      btn.textContent = 'Verify failed';
+      setTimeout(() => { btn.textContent = '✓ Verify Current Members (DEF 14A)'; btn.disabled = false; }, 1200);
+    }
+  }
+
+  // ---------- person card + other boards + OllyLocker ----------
+  async function openPersonCard(cik, personName) {
+    const holder = qs('#personWrap');
+    holder.innerHTML = '<div class="muted">Loading ' + personName + '…</div>';
+    try {
+      const data = await fetchJSON('/api/person-details', {
+        method:'POST', headers:{'Content-Type':'application/json'},
+        body: JSON.stringify({ cik, personName })
+      });
+      const { person = {}, insiderCik, tradesSection = [], otherBoards = [] } = data || {};
+
+      const pc = el('div','personCard');
+      const title = el('div','personTitle'); title.textContent = person.name || personName; pc.appendChild(title);
+
+      const btns = el('div','actions');
+      const lockerBtn = el('button','btn btn-dark');
+      lockerBtn.textContent = 'OllyLocker™';
+      lockerBtn.onclick = () => {
+        const state = {
+          cik: currentCompany?.cik || cik,
+          name: currentCompany?.name || '',
+          ticker: currentCompany?.ticker || '',
+          person: person.name || personName
+        };
+        const url = `${location.pathname}#ollylocker&state=${encodeURIComponent(JSON.stringify(state))}`;
+        window.open(url, '_blank');
+      };
+      btns.appendChild(lockerBtn);
+
+      // verify other boards button
+      if (otherBoards.length) {
+        const vOB = el('button','btn btn-dark');
+        vOB.textContent = '✓ Verify Other Boards';
+        vOB.onclick = () => verifyOtherBoards(otherBoards, person.name || personName);
+        btns.appendChild(vOB);
+      }
+      if (insiderCik) {
+        const sec = el('a','btn'); sec.target='_blank'; sec.rel='noopener noreferrer';
+        sec.href = 'https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=' + String(insiderCik).padStart(10,'0');
+        sec.textContent = 'Insider CIK ' + String(insiderCik).padStart(10,'0');
+        btns.appendChild(sec);
+      }
+      pc.appendChild(btns);
+
+      const fields = [];
+      if (person.position) fields.push(['Position', person.position]);
+      if (person.age) fields.push(['Age', person.age]);
+      if (person.class) fields.push(['Class', person.class]);
+      if (person.since) fields.push(['Since', person.since]);
+      if (person.committees) fields.push(['Committees', person.committees]);
+      if (person.qualifications) fields.push(['Qualifications', person.qualifications]);
+      if (person.experience) fields.push(['Experience', person.experience]);
+      if (person.education) fields.push(['Education', person.education]);
+      if (person.otherBoardService) fields.push(['Other Board Service', person.otherBoardService]);
+      if (person.shareholdings) fields.push(['Shareholdings', person.shareholdings]);
+      fields.forEach(([k,v]) => {
+        const row = el('div','personRow');
+        const K = el('span','k'); K.textContent = k;
+        const V = el('span','v'); V.textContent = v;
+        if (k === 'Qualifications' || k === 'Experience' || k === 'Education') {
+          V.style.whiteSpace = 'pre-wrap'; V.style.fontSize = '13px'; V.style.lineHeight = '1.4';
+        }
+        row.appendChild(K); row.appendChild(V); pc.appendChild(row);
+      });
+
+      if (tradesSection.length) {
+        const tTitle = el('div','personTitle'); tTitle.textContent = 'Recent Insider Filings';
+        const tWrap = el('div','boardList');
+        tradesSection.forEach(f => {
+          const a = el('a','personLink'); a.target='_blank'; a.rel='noopener noreferrer';
+          a.href = f.linkToFilingDetails || '#';
+          const date = f.filedAt ? new Date(f.filedAt).toLocaleDateString() : '';
+          a.textContent = `Form ${f.formType}${f.ticker?` – ${f.ticker}`:''} (${date})`;
+          tWrap.appendChild(a);
+        });
+        pc.appendChild(tTitle); pc.appendChild(tWrap);
+      }
+
+      holder.innerHTML = ''; holder.appendChild(pc);
+
+      if (otherBoards.length) {
+        const obTitle = el('div','personTitle'); obTitle.textContent = 'Other Boards';
+        const obList = el('div','boardList'); obList.id = 'otherBoardsList';
+        otherBoards.forEach(b => {
+          const a = el('a','personLink'); a.href='#';
+          a.dataset.cik = b.cik;
+          a.textContent = `${b.name}${b.ticker?` (${b.ticker})`:''}`;
+          a.addEventListener('click', (ev) => { ev.preventDefault(); openCompanyByCik(b.cik); });
+          obList.appendChild(a);
+        });
+        holder.appendChild(obTitle); holder.appendChild(obList);
+      }
+
+    } catch (e) {
+      console.error(e);
+      holder.innerHTML = '<div class="tiny">Could not load person details.</div>';
+    }
+  }
+
+  // verify "other boards": keep greens, hide non-current; show legend
+  async function verifyOtherBoards(boards, personName) {
+    try {
+      const res = await fetchJSON('/api/verify-other-boards', {
+        method:'POST', headers:{'Content-Type':'application/json'},
+        body: JSON.stringify({ boards, personName })
+      });
+      const { activeCiks = [] } = res || {};
+      const set = new Set(activeCiks.map(String));
+      const list = qs('#otherBoardsList');
+      if (!list) return;
+      let shown=0, hidden=0;
+      [...list.querySelectorAll('.personLink')].forEach(a => {
+        const cik = a.dataset.cik;
+        if (set.has(cik)) {
+          shown++; a.classList.add('btn-green'); a.style.fontWeight='800';
+        } else {
+          hidden++; a.style.display='none';
+        }
+      });
+      const legend = document.createElement('div');
+      legend.className = 'legend';
+      legend.innerHTML = '<span class="chip low"><span class="dot"></span> Currently Serving</span><span class="chip high"><span class="dot"></span> Not Current (hidden)</span>';
+      list.insertAdjacentElement('afterend', legend);
+    } catch (e) {
+      console.error('verifyOtherBoards failed', e);
+    }
+  }
+
+  async function openCompanyByCik(cik) {
+    try {
+      const res = await fetchJSON('/api/lookup?q=' + encodeURIComponent(String(cik)));
+      const match = Array.isArray(res) ? res.find(r => String(r.cik) === String(cik)) : null;
+      if (match) selectCompany(match);
+    } catch (e) {}
+  }
+})();
+  </script>
+</body>
+</html>
