@@ -1,0 +1,16 @@
+{
+  "name": "ollytracker",
+  "version": "1.0.0",
+  "description": "OllyTracker - Company + Board Interlock Intelligence",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "ejs": "^3.1.10",
+    "express": "^4.19.2",
+    "fuse.js": "^7.0.0",
+    "node-fetch": "^2.7.0"
+  }
+}

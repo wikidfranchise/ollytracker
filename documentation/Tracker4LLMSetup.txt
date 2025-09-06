@@ -1,0 +1,88 @@
+ollie tracker OLLYTRACKER 
+OllyTracker is a vibe coding project desigend to track Oligarchs. 
+Ollie is a mirror of Edgar the SEC filing repository 
+Because it's a mirror of Edgar we cannot Improvise Deviate Or use normalization or fuzzy logic build this app 
+We use an API called SecApi.Io which is a private product and has nothing to do with the SEC 
+This API has approximately 30 query and end point guides based on the typical information people pull from EDGAR 
+IMPORTANT - THE LIMIT ON THE SECAPI.IO IS 50 RECORDS PER REQUEST BUT WITH PAGINATION CAN PULL AND CHUNK PULLS - DO NOT EXCEED THIS OR WE WILL GET BOOTED!
+we do not guess endpoints and we do not make them up we use this reference in all situations 
+This app is made up of several data engines including Tracker Locker Enforcer Fetch Lookup com cortex stream 
+Each data engine serves a unique purpose 
+The engines are not all interconnected but many of the functions are reused 
+Two of the engines that are interconnected are tracker and locker 
+Tracker is a super powered and reveals any and all board members of the SEC along with all of the forms they have ever filed allowing us to show what we call the Ollie Tracker Curriculum Vitae or OTCV 
+This allows anyone to look at anyone's record using Ollie Tracker of an insider and all the trades they've made since the very first day . For instance if someone wanted to look up Mark Zuckerberg in every trade he's ever made on the SEC you can simply do that 
+Every piece of data in OllyTracker is linked to the SEC whenever possible Regardless if it's repetitive because people search for data in different ways 
+Our API allows us to pull any and all filings in their contents using a query based engine and we do not store anything from the SEC in our supabase
+We are using nodejs superbase our API and vercel
+the creator of this app is not a developer and is in fact a vibe coder who is really a solutions architect from the COM with experience in designing telecom networks for large fortune companies 
+Olly stands for oligarch  
+Ollie focuses on insider trading and all of the creatures who live in this creepy world 
+The Olly Tracker logo is a yacht along with the two words Olly and Tracker 
+The Olly mascot is Mosa MOSA, a German Shepherd a live German shepherd which is the pet of the architect's twin son
+The app is designed for forensic use law enforcement academia and investigative journalism as well as retail because it will be offered to anyone provided they pay the fee to use it 
+The app was designed independently in other words every data engine was designed with HTMLJS and CSS and is now going through a node conversion 
+The node conversion began with Tracker and has had some hiccups but is going forward . 
+We are still working with Tracker as it is the most powerful and revealing piece of the app 
+tracker starts with a search engine which will reveal every company in the SEC including all delisted companies 
+inserting a ticker company name or CIK tracker will pull up just about anything from the SEC database that can be searched upon 
+When displaying data from the SEC database the CIK number of an individual or a company is the unique identifier in every case 
+We only have three unique identifiers when it comes to a company or an individual and those are the ticker symbol of the company the CIK of either the individual or the company and believe it or not a website 
+we must use CIK in all cases to clearly identify and prevent any duplication fuzzy matching normalization are not acceptable including canonical functions 
+If we do not know for sure we do not show it everything on our app can be verified on EDGAR Thus we refer people to EDGAR if they believe there is an error and show them exactly where the data was pulled from 
+Anchor is notorious for being difficult to use and behind the the times Tracker eliminates all of this 
+Tracker is a layman tool it is made so that people who are not technical can use it regardless There is no training required as it is intuitive and actually quite delightful to watch as it is interactive and dynamic 
+Once a person has entered a ticker such as AA for Alcoa into tracker a business type card is revealed showing The the company CIK a link to SEC and Alcoa's profile including all of their filings the company name the exchange the industry the market cap shares out iPod and the website Including current prices from 5 or 6 stock sites including up and down arrows in red and green depiction of the state of the stock at the time of the request
+the magic button on this page of results is called View Board 
+Clicking on View Board will reveal all of the current board members in a form of buttons which are color coded denoting obvious colors are red yellow and green 
+Clicking upon anyone of these board member buttons will reveal the board members filings their CIK Their title position their age their other boards they serve on or have served on 
+clicking on any of the pink colored forms under the title Recent Insider Filings will take the user to the SEC and show them the form where a download can accomplished from the SEC Edgar 
+clicking on the individual CIK will take the user to the SEC site which shows all of those users trades and history 
+A simple click on any of the member buttons we'll reveal all of their historical information as pulled from the SEC database in real time 
+We are currently working very aggressively at putting a board history button in place which will show the entire board history of all companies using queries for ads and drops This will be a premium premium service probably only available to Tier 3 users 
+track her in every other data engine in tracker are real time engines they pull data every timer pust is made and no data is stored 
+A pulsing button with the name OllyLocker blinks at the user as they sit the company page inside tracker this leads to Locker 
+Polly Locker button reveals the Ollie Locker graphing tool 
+The tool carries from Tracker the member that displayed in tracker when the Ollie locker button was pushed and draws their in this case Alcoa and the of the board displayed in the graph dynamically 
+Displayed under the canvas of locker is the company ticker a name Stock price carried over company CIK a link to Edgar which is the same link of the CIK but it depends on how people look at the page so we leave both on the page 
+All of the board members of the Alcoa board in this case are shown and carried over from Tracker with their filing information which are form buttons clickable to the SEC EDGAR database 
+The magic of locker is one can simply click on any board member button in the relationships will be displayed in the canvas 
+should a person be on two boards one can click on the other boards and they will also display in the canvas and allow the user to then explore those other boards adding to the network design in the canvas 
+The process continues until the user chooses to download the PNG which is the canvas picture that they have drawn based on the clicks they have made across the member boardrooms of the entire SEC 
+The powerful search engine of Tracker is carried over into Locker allowing the user to display relationships and what we call OllyIncest ingest 
+The main purpose of locker is to show what the industry calls interlocks in which board members are placed for obvious influence or underbelly activity 
+Locker reveals any and every board member current we will also operate as a historical Lexus of board member appointments back to the year 2007 
+All data taken from tracker can be used in court as evidence as it is a mirror and can be verified using should a lawyer or forensic actor so decide 
+The tool is designed such that a detective on a police force doesn't have to go to his IT department to get a search done they can simply do it in real time on their own phone or desktop 
+Tracker and locker Might as well a listening device in every board room of every company of the SEC 
+Other tools we will add to this include OllyStream, OllyFetch, OllyLookup, OllyInsider, OllyComp, OllyEnforcer
+Fetch his power to pull any form filing of any type and operates as the last resort when other tools don't work or more intricate forensic work is necessary 
+Comp is exactly what it stands for it's the compensation of all insiders and can be used to pull up anyone who has ever done business and their information is on EDGAR 
+Cortex is a board member analysis tool allowing search collection and download of multiple companies in one engine Cortex allows one to search on one or more companies put them in a collection and download them in either Jason CSV or Excel format 
+Insider is exactly what it sounds like it pulls all filings for Insider filing form with Edgar and compiles them and allows the user to download them and search to show patterns the insider works primarily on form 3,4,5 and 114 filings
+Able to pull all of the form fours from a given day and Insider puts them into a spreadsheet for you in a structure you can Used for analysis 
+lookup is the powerful search engine and tracker in a stand alone engine 
+enforcer isolates 8K filings used to board changes restatement financials and auditor changes which reveals major change in board controlled companies a user can search by company or by date and reveal all of the actions from these filings in real time 
+And not finally but almost firstly we have OllyStream - The stream is the landing page when one hits the domain ollytracker.com
+Stream components include a connection monitor and the Ollie stream which is right to left movement of buttons we refer to as "filing boats" Which move from the user's right screen to their left screen across a black channel we call the stream , which may turn into a blue channel shortly label the Ollie stream with filters allowing users to choose exchanges indexes or form types 
+Below the stream is a filing diligence dashboard which shows active companies how many trades they've done since one started this stream as well as form buttons which are filters controlling ollyCards and filing boat viewing of the  stream 
+For instance if one wanted to all of the filings of a company that is very active they can simply click on that button and it will show all those filings for the time since they've turned stream on 
+If they prefer to sort by type they can choose any of the warm buttons from 10K all the way to an All Forms button which shows every and any filing as it occurs seconds after filing . 
+Below the filing diligence dashboard are ollycards - These are cards depicting each trade but with much more information Each card has the ticker the stock price whether it's going up or down in red or green with up and down arrows It also has a link to the form and each form type has its own color coding so visual happens before someone has to read text 
+Included on the cards is the company or the individual or both involved in the filing With filing time which in many cases is just now the sector the CIK and three buttons , view filing obvious connects to the SEC and EDGAR add to portfolio an individual OTCVwhich is the Olle Tracker Curriculum Vitae link
+The oligarch OTCV is a summary of the query of the which the CIK of the reporting person How many filings were found under that CIK a career timeline with the latest 10 filings and multiple links to Edgar as well as a copy CIK for other searches on other engines 
+The purpose of these cards is to give analyst for Researcher everything in one instance which is verifiable in court 
+Finally Stream has the My Ollie Tracker portfolio Allowing users to compile data in today's either by choosing tickers inside portfolio or clicking on any number of Ollie cards to add those companies or individuals to one's portfolio 
+I envision stream as being the browser tab that people will leave leave open on their desktop all day because it's fascinating to watch It never stops until trading stops and then it keeps going into the night showing people who are filing late or filing after hours 
+There is no need to change how stream pulls in real time from the time someone starts their browser until the time they close it 
+All engines have the NAV bar interconnecting their engines 
+tracker will be a tiered access tool with three tiers to start 
+tier one will have use of tracker stream look up 
+tier two users will have use of tracker locker stream and lookup
+Tier three will have access to everything all the time 
+Tier one and tier two users will have an A la carte menu allowing them to pick and choose which engines they want to add to their bundle  
+A tier one user have access and just want enforcer because they are a forensic accounting firm 
+a Tier 2 user having access to may also want only access to fetch allowing them to pull any and every form that has ever been filed at EDGAR 
+All users will be able to upgrade in session and continue work on the app - Most likely using stripe 
+we currently use Supabase, Vercel, secapi.io, finnhub And stock reporting sites which are free we are paid subscribers to all of these on a monthly basis 
+9/3/2025 

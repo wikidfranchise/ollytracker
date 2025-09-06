@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OllyTracker – Company Lookup → OLLYCARD</title>
+  <link rel="icon" type="image/png" sizes="100x100" href="/images/mosa-hero.png">
+  <style>
+    :root { 
+      --bg:#f6f8fb; --card:#ffffff; --ink:#111827; --muted:#6b7280; 
+      --accent:#0b63ce; --green:#0c9b3f; --red:#c81e1e; --line:#e5e7eb;
+      --green-bg: #f0fdf4; --green-border: #bbf7d0; --green-text: #166534;
+      --grey-bg: #f8fafc; --grey-border: #e2e8f0; --grey-text: #475569;
+    }
+    html, body { background:var(--bg); color:var(--ink); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; margin:0; }
+    .wrap { max-width: 1100px; margin: 24px auto 80px; padding: 0 16px; }
+    h1 { font-weight: 800; font-size: 28px; margin: 0 0 16px; }
+    .sub { color: var(--muted); font-size: 14px; margin-bottom: 18px; }
+
+    /* Search & Card */
+    .searchBox { position: relative; }
+    .searchBox input { width: 100%; padding: 14px 16px; background: var(--card); border: 1px solid var(--line); border-radius: 12px; font-size: 16px; outline: none; }
+    .dropdown { position: absolute; top: 54px; left: 0; right: 0; background: var(--card); border:1px solid var(--line); border-radius: 12px; overflow: hidden; box-shadow: 0 8px 24px rgba(0,0,0,.08); z-index:10; }
+    .row { display:flex; align-items:center; gap:10px; padding: 10px 14px; border-bottom:1px solid var(--line); cursor: pointer; }
+    .row:last-child { border-bottom:none; }
+    .row:hover { background: #f3f4f6; }
+    .ticker { font-weight:700; color: var(--accent); }
+    .exch { color: var(--muted); font-size: 12px; margin-left:auto; }
+    .card { margin-top: 18px; background: var(--card); border:1px solid var(--line); border-radius: 16px; padding: 16px; }
+    .cardTop { display:flex; align-items:center; gap:12px; justify-content: space-between; flex-wrap: wrap; }
+    .title { font-weight:800; font-size: 22px; }
+    .actions { display:flex; align-items:center; gap:10px; margin-top:12px; }
+    .btn { background:#eef2ff; border:1px solid #c7d2fe; color:#3730a3; padding:10px 12px; border-radius:10px; cursor:pointer; font-weight: 600; }
+    .btn:hover { background:#e0e7ff; }
+    .btn:disabled { opacity:.55; cursor:not-allowed; }
+    .btn--primary{ background:#4338ca; border-color:#4338ca; color:#fff; }
+    .btn--primary:hover{ background:#3730a3; }
+    .tiny { font-size: 12px; color: var(--muted); margin-top: 12px; }
+    .warn { color: #d97706; background-color: #fef3c7; padding: 8px; border-radius: 6px; }
+
+    /* Board list styles */
+    .boardTitle { font-weight: 800; margin-top: 24px; margin-bottom: 8px; font-size: 1.25rem; }
+    .boardList { display: flex; flex-wrap: wrap; gap: 12px; }
+    .personLink { 
+      background: var(--grey-bg); border: 1px solid var(--grey-border); color: var(--grey-text);
+      text-decoration: none; padding: 10px 14px; border-radius: 10px; 
+      display: inline-flex; flex-direction: column; align-items: flex-start;
+      min-width: 200px;
+    }
+    .personLink.verified {
+      background: var(--green-bg); border-color: var(--green-border); color: var(--green-text);
+    }
+    .member-name { font-weight: 600; font-size: 1rem; }
+    .member-cik { font-size: 0.75rem; margin-top: 4px; }
+    .member-cik a { color: var(--accent); text-decoration: none; }
+    .member-cik a:hover { text-decoration: underline; }
+    .member-info { font-size: 0.75rem; margin-top: 4px; color: var(--muted); }
+
+    /* Header */
+    .header-wrapper { background: linear-gradient(135deg, #0a1a3a 0%, #2b5fc0 100%); color: #fff; padding: 12px 20px 8px; }
+    .header-content { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; justify-content: center; text-align: center; gap: 22px; }
+    .logo-img { height: 120px; filter: brightness(0) invert(1); transform: translateX(-75px) scale(2); transform-origin: left center; }
+    .page-title { margin: 0; font-size: 2.1rem; font-weight: 800; }
+    .trademark { font-size: .5em; vertical-align: super; }
+    .page-subtitle { margin-top: 4px; font-size: 1rem; opacity: .95; }
+    .page-tagline { margin-top: 2px; font-size: .85rem; color:#39FF14; }
+  </style>
+</head>
+<body>
+
+<header class="header-wrapper">
+  <div class="header-content">
+    <img src="/images/OllyTracker_Yacht_Logo.jpg" alt="OllyTracker Logo" class="logo-img">
+    <div class="title-section">
+      <h1 class="page-title">OllyTracker<span class="trademark">™</span></h1>
+      <p class="page-subtitle">Company + Board Interlock Intelligence</p>
+      <p class="page-tagline">Real-Time SEC Data • Verified from Source</p>
+    </div>
+  </div>
+</header>  
+
+<main class="wrap">
+  <div class="searchBox">
+    <input id="q" type="text" placeholder="Start typing a ticker or company (e.g., AAPL or Apple)" autocomplete="off" />
+    <div id="dropdown" class="dropdown" style="display:none"></div>
+  </div>
+
+  <div id="card" class="card" style="display:none"></div>
+  <div id="boardWrap"></div>
+
+</main>
+
+<script>
+    const qs = sel => document.querySelector(sel);
+    const el = (tag, cls) => { const n=document.createElement(tag); if (cls) n.className=cls; return n; };
+    let lookupSeq = 0, debounceTimer = null;
+
+    // --- COMPANY SEARCH AND SELECTION ---
+    qs('#q').addEventListener('input', (ev) => {
+      const v = ev.target.value.trim();
+      clearTimeout(debounceTimer);
+      if (!v) { qs('#dropdown').style.display='none'; return; }
+      debounceTimer = setTimeout(async () => {
+        const mySeq = ++lookupSeq;
+        const res = await fetch(`/api/lookup-company?q=${encodeURIComponent(v)}`);
+        if (mySeq !== lookupSeq || !res.ok) return;
+        const results = await res.json();
+        renderDropdown(results);
+      }, 300);
+    });
+
+    function renderDropdown(results) {
+      const drop = qs('#dropdown');
+      drop.innerHTML='';
+      if (!results || results.length === 0) { drop.style.display='none'; return; }
+      drop.style.display='block';
+      results.slice(0,10).forEach(r => {
+        const row = el('div','row');
+        const t = el('span','ticker'); t.textContent = r.ticker || '—';
+        const name = el('span'); name.textContent = r.name || 'Unknown';
+        const ex = el('span','exch'); ex.textContent = r.exchange || '';
+        row.append(t, name, ex);
+        row.addEventListener('click', () => selectCompany(r));
+        drop.appendChild(row);
+      });
+    }
+
+    function selectCompany(item) {
+      qs('#q').value = `${item.name} (${item.ticker})`;
+      qs('#dropdown').style.display='none';
+      qs('#boardWrap').innerHTML = ''; // Clear previous board results
+
+      const card = qs('#card');
+      card.style.display='block';
+      card.innerHTML='';
+
+      const top = el('div','cardTop');
+      const title = el('div','title');
+      title.textContent = `${item.name} (${item.ticker})`;
+      top.appendChild(title);
+      card.appendChild(top);
+
+      const actions = el('div','actions');
+      
+      const currentBoardBtn = el('button','btn btn--primary');
+      currentBoardBtn.textContent = 'Current Board';
+      currentBoardBtn.onclick = () => loadCurrentBoard(item.cik, item.name);
+      actions.appendChild(currentBoardBtn);
+
+      const boardHistoryBtn = el('button','btn');
+      boardHistoryBtn.textContent = 'Board History';
+      boardHistoryBtn.onclick = () => loadBoardHistory(item.cik, item.name);
+      actions.appendChild(boardHistoryBtn);
+
+      card.appendChild(actions);
+    }
+    
+    document.addEventListener('click', (e) => {
+      if (!qs('.searchBox').contains(e.target)) {
+        qs('#dropdown').style.display='none';
+      }
+    });
+
+    // --- DATA LOADING AND RENDERING ---
+
+    async function loadBoardHistory(cik, companyName) {
+      const boardWrap = qs('#boardWrap');
+      boardWrap.innerHTML = '<div class="muted">Loading complete board history from Form 3 filings...</div>';
+      try {
+        const res = await fetch('/api/load-board', {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({ cik, companyName })
+        });
+        if (!res.ok) throw new Error(`Server returned ${res.status}`);
+        const data = await res.json();
+        renderBoard(data.directors, companyName, 'Board History');
+      } catch (e) {
+        boardWrap.innerHTML = `<div class="warn">Could not load board history: ${e.message}</div>`;
+      }
+    }
+    
+    async function loadCurrentBoard(cik, companyName) {
+      const boardWrap = qs('#boardWrap');
+      boardWrap.innerHTML = '<div class="muted">Verifying current board from latest proxy & insider filings...</div>';
+      try {
+        const res = await fetch('/api/current-board', {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({ cik, companyName })
+        });
+        if (!res.ok) throw new Error(`Server returned ${res.status}`);
+        const data = await res.json();
+
+        const subtitle = `(${data.totalDirectors} directors, ${data.verifiedCiks} CIKs verified)`;
+        renderBoard(data.directors, `Current Board ${subtitle}`, data.disclaimer);
+      } catch (e) {
+        boardWrap.innerHTML = `<div class="warn">Could not load current board: ${e.message}</div>`;
+      }
+    }
+
+    function renderBoard(directors, titleText, disclaimerText) {
+        const boardWrap = qs('#boardWrap');
+        boardWrap.innerHTML = '';
+
+        if (!directors || directors.length === 0) {
+            boardWrap.innerHTML = `<div class="warn">No directors found.</div>`;
+            return;
+        }
+
+        const title = el('div', 'boardTitle');
+        title.textContent = titleText;
+        boardWrap.appendChild(title);
+
+        if (disclaimerText) {
+            const disclaimer = el('div', 'tiny');
+            disclaimer.textContent = disclaimerText;
+            disclaimer.style.marginBottom = '12px';
+            boardWrap.appendChild(disclaimer);
+        }
+
+        const list = el('div', 'boardList');
+        directors.forEach(dir => {
+            const btn = el('a', 'personLink');
+            btn.href = '#';
+            btn.classList.toggle('verified', dir.cikVerified);
+
+            const nameSpan = el('span', 'member-name');
+            nameSpan.textContent = dir.name || 'Unknown';
+
+            const cikSpan = el('span', 'member-cik');
+            if (dir.cik) {
+                const paddedCik = String(dir.cik).padStart(10, '0');
+                cikSpan.innerHTML = `<a href="https://www.sec.gov/edgar/browse/?CIK=${paddedCik}" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();">CIK ${paddedCik} ✓</a>`;
+            } else {
+                cikSpan.textContent = 'CIK Not Found';
+            }
+            
+            const infoSpan = el('span', 'member-info');
+            let info = [dir.position, dir.since ? `Since ${dir.since}` : '', dir.age ? `Age ${dir.age}`: ''].filter(Boolean).join(' • ');
+            infoSpan.textContent = info;
+
+            btn.append(nameSpan, cikSpan, infoSpan);
+            list.appendChild(btn);
+        });
+        boardWrap.appendChild(list);
+    }
+</script>
+
+</body>
+</html>

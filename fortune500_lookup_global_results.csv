@@ -1,0 +1,502 @@
+input_name,query_used,param,matched_name,ticker,exchange,cik,http_status
+Name,Name,q,N/A,N/A,N/A,,200
+Walmart,Walmart,q,N/A,N/A,N/A,,200
+Amazon,Amazon,q,N/A,N/A,N/A,,200
+State Grid,State Grid,q,N/A,N/A,N/A,,200
+Saudi Aramco,Saudi Aramco,q,N/A,N/A,N/A,,200
+China National Petroleum,China National Petroleum,q,N/A,N/A,N/A,,200
+Sinopec Group,Sinopec Group,q,N/A,N/A,N/A,,200
+UnitedHealth Group,UnitedHealth Group,q,N/A,N/A,N/A,,200
+Apple,Apple,q,N/A,N/A,N/A,,200
+CVS Health,CVS Health,q,N/A,N/A,N/A,,200
+Berkshire Hathaway,Berkshire Hathaway,q,N/A,N/A,N/A,,200
+McKesson,McKesson,q,N/A,N/A,N/A,,200
+Volkswagen,Volkswagen,q,N/A,N/A,N/A,,200
+Alphabet,Alphabet,q,N/A,N/A,N/A,,200
+Exxon Mobil,Exxon Mobil,q,N/A,N/A,N/A,,200
+Toyota Motor,Toyota Motor,q,N/A,N/A,N/A,,200
+China State Construction Engineering,China State Construction Engineering,q,N/A,N/A,N/A,,200
+Cencora,Cencora,q,N/A,N/A,N/A,,200
+Shell,Shell,q,N/A,N/A,N/A,,200
+JPMorgan Chase,JPMorgan Chase,q,N/A,N/A,N/A,,200
+Costco Wholesale,Costco Wholesale,q,N/A,N/A,N/A,,200
+Cigna,Cigna,q,N/A,N/A,N/A,,200
+Microsoft,Microsoft,q,N/A,N/A,N/A,,200
+Trafigura Group,Trafigura Group,q,N/A,N/A,N/A,,200
+Glencore,Glencore,q,N/A,N/A,N/A,,200
+Cardinal Health,Cardinal Health,q,N/A,N/A,N/A,,200
+Industrial & Commercial Bank of China,Industrial & Commercial Bank of China,q,N/A,N/A,N/A,,200
+Samsung Electronics,Samsung Electronics,q,N/A,N/A,N/A,,200
+Hon Hai Precision Industry,Hon Hai Precision Industry,q,N/A,N/A,N/A,,200
+Chevron,Chevron,q,N/A,N/A,N/A,,200
+Agricultural Bank of China,Agricultural Bank of China,q,N/A,N/A,N/A,,200
+China Construction Bank,China Construction Bank,q,N/A,N/A,N/A,,200
+TotalEnergies,TotalEnergies,q,N/A,N/A,N/A,,200
+BP,BP,q,N/A,N/A,N/A,,200
+Bank of America,Bank of America,q,N/A,N/A,N/A,,200
+General Motors,General Motors,q,N/A,N/A,N/A,,200
+Ford Motor,Ford Motor,q,N/A,N/A,N/A,,200
+Elevance Health,Elevance Health,q,N/A,N/A,N/A,,200
+Bank of China,Bank of China,q,N/A,N/A,N/A,,200
+Citigroup,Citigroup,q,N/A,N/A,N/A,,200
+Stellantis,Stellantis,q,N/A,N/A,N/A,,200
+Meta Platforms,Meta Platforms,q,N/A,N/A,N/A,,200
+Centene,Centene,q,N/A,N/A,N/A,,200
+China Railway Engineering Group,China Railway Engineering Group,q,N/A,N/A,N/A,,200
+JD.com,JD.com,q,N/A,N/A,N/A,,200
+China Life Insurance,China Life Insurance,q,N/A,N/A,N/A,,200
+Home Depot,Home Depot,q,N/A,N/A,N/A,,200
+Ping An Insurance,Ping An Insurance,q,N/A,N/A,N/A,,200
+Mercedes-Benz Group,Mercedes-Benz Group,q,N/A,N/A,N/A,,200
+BMW Group,BMW Group,q,N/A,N/A,N/A,,200
+Fannie Mae,Fannie Mae,q,N/A,N/A,N/A,,200
+China Railway Construction,China Railway Construction,q,N/A,N/A,N/A,,200
+Walgreens Boots Alliance,Walgreens Boots Alliance,q,N/A,N/A,N/A,,200
+Kroger,Kroger,q,N/A,N/A,N/A,,200
+BNP Paribas,BNP Paribas,q,N/A,N/A,N/A,,200
+Banco Santander,Banco Santander,q,N/A,N/A,N/A,,200
+HSBC Holdings,HSBC Holdings,q,N/A,N/A,N/A,,200
+Phillips 66,Phillips 66,q,N/A,N/A,N/A,,200
+China Mobile Communications,China Mobile Communications,q,N/A,N/A,N/A,,200
+Honda Motor,Honda Motor,q,N/A,N/A,N/A,,200
+Marathon Petroleum,Marathon Petroleum,q,N/A,N/A,N/A,,200
+China Communications Construction,China Communications Construction,q,N/A,N/A,N/A,,200
+CITIC Group,CITIC Group,q,N/A,N/A,N/A,,200
+Alibaba Group Holding,Alibaba Group Holding,q,N/A,N/A,N/A,,200
+Verizon Communications,Verizon Communications,q,N/A,N/A,N/A,,200
+China National Offshore Oil,China National Offshore Oil,q,N/A,N/A,N/A,,200
+Nvidia,Nvidia,q,N/A,N/A,N/A,,200
+China Resources,China Resources,q,N/A,N/A,N/A,,200
+Hyundai Motor,Hyundai Motor,q,N/A,N/A,N/A,,200
+�lectricit� de France,�lectricit� de France,q,N/A,N/A,N/A,,200
+Goldman Sachs Group,Goldman Sachs Group,q,N/A,N/A,N/A,,200
+Wells Fargo,Wells Fargo,q,N/A,N/A,N/A,,200
+Deutsche Telekom,Deutsche Telekom,q,N/A,N/A,N/A,,200
+China Baowu Steel Group,China Baowu Steel Group,q,N/A,N/A,N/A,,200
+Valero Energy,Valero Energy,q,N/A,N/A,N/A,,200
+Comcast,Comcast,q,N/A,N/A,N/A,,200
+Allianz,Allianz,q,N/A,N/A,N/A,,200
+State Farm Insurance,State Farm Insurance,q,N/A,N/A,N/A,,200
+AT&T,AT&T,q,N/A,N/A,N/A,,200
+Mitsubishi,Mitsubishi,q,N/A,N/A,N/A,,200
+Freddie Mac,Freddie Mac,q,N/A,N/A,N/A,,200
+Hengli Group,Hengli Group,q,N/A,N/A,N/A,,200
+Shandong Energy Group,Shandong Energy Group,q,N/A,N/A,N/A,,200
+Huawei Investment & Holding,Huawei Investment & Holding,q,N/A,N/A,N/A,,200
+China Southern Power Grid,China Southern Power Grid,q,N/A,N/A,N/A,,200
+Humana,Humana,q,N/A,N/A,N/A,,200
+China Minmetals,China Minmetals,q,N/A,N/A,N/A,,200
+Gazprom,Gazprom,q,N/A,N/A,N/A,,200
+Reliance Industries,Reliance Industries,q,N/A,N/A,N/A,,200
+Societe Generale,Societe Generale,q,N/A,N/A,N/A,,200
+Rosneft Oil,Rosneft Oil,q,N/A,N/A,N/A,,200
+BYD,BYD,q,N/A,N/A,N/A,,200
+China Energy Investment,China Energy Investment,q,N/A,N/A,N/A,,200
+Morgan Stanley,Morgan Stanley,q,N/A,N/A,N/A,,200
+Target,Target,q,N/A,N/A,N/A,,200
+Life Insurance Corp. of India,Life Insurance Corp. of India,q,N/A,N/A,N/A,,200
+Equinor,Equinor,q,N/A,N/A,N/A,,200
+Nestl�,Nestl�,q,N/A,N/A,N/A,,200
+Xiamen C&D,Xiamen C&D,q,N/A,N/A,N/A,,200
+StoneX Group,StoneX Group,q,N/A,N/A,N/A,,200
+PowerChina,PowerChina,q,N/A,N/A,N/A,,200
+Royal Bank of Canada,Royal Bank of Canada,q,N/A,N/A,N/A,,200
+Sberbank,Sberbank,q,N/A,N/A,N/A,,200
+AXA,AXA,q,N/A,N/A,N/A,,200
+ENI,ENI,q,N/A,N/A,N/A,,200
+Bosch Group,Bosch Group,q,N/A,N/A,N/A,,200
+Tesla,Tesla,q,N/A,N/A,N/A,,200
+China Post Group,China Post Group,q,N/A,N/A,N/A,,200
+Royal Ahold Delhaize,Royal Ahold Delhaize,q,N/A,N/A,N/A,,200
+Itochu,Itochu,q,N/A,N/A,N/A,,200
+Mitsui,Mitsui,q,N/A,N/A,N/A,,200
+Dell Technologies,Dell Technologies,q,N/A,N/A,N/A,,200
+REWE Group,REWE Group,q,N/A,N/A,N/A,,200
+Carrefour,Carrefour,q,N/A,N/A,N/A,,200
+SK,SK,q,N/A,N/A,N/A,,200
+PepsiCo,PepsiCo,q,N/A,N/A,N/A,,200
+Tencent Holdings,Tencent Holdings,q,N/A,N/A,N/A,,200
+Christian Dior,Christian Dior,q,N/A,N/A,N/A,,200
+Zhejiang Rongsheng Holding Group,Zhejiang Rongsheng Holding Group,q,N/A,N/A,N/A,,200
+Sinopharm,Sinopharm,q,N/A,N/A,N/A,,200
+Petrobras,Petrobras,q,N/A,N/A,N/A,,200
+Pemex,Pemex,q,N/A,N/A,N/A,,200
+Walt Disney,Walt Disney,q,N/A,N/A,N/A,,200
+United Parcel Service,United Parcel Service,q,N/A,N/A,N/A,,200
+DHL Group,DHL Group,q,N/A,N/A,N/A,,200
+Credit Agricole,Credit Agricole,q,N/A,N/A,N/A,,200
+Taiwan Semiconductor Manufacturing,Taiwan Semiconductor Manufacturing,q,N/A,N/A,N/A,,200
+Indian Oil,Indian Oil,q,N/A,N/A,N/A,,200
+NTT,NTT,q,N/A,N/A,N/A,,200
+Tesco,Tesco,q,N/A,N/A,N/A,,200
+Mitsubishi UFJ Financial Group,Mitsubishi UFJ Financial Group,q,N/A,N/A,N/A,,200
+Johnson & Johnson,Johnson & Johnson,q,N/A,N/A,N/A,,200
+Toronto-Dominion Bank,Toronto-Dominion Bank,q,N/A,N/A,N/A,,200
+COFCO,COFCO,q,N/A,N/A,N/A,,200
+China Telecommunications,China Telecommunications,q,N/A,N/A,N/A,,200
+FedEx,FedEx,q,N/A,N/A,N/A,,200
+PTT,PTT,q,N/A,N/A,N/A,,200
+Banco Bilbao Vizcaya Argentaria,Banco Bilbao Vizcaya Argentaria,q,N/A,N/A,N/A,,200
+SAIC Motor,SAIC Motor,q,N/A,N/A,N/A,,200
+UBS Group,UBS Group,q,N/A,N/A,N/A,,200
+E.ON,E.ON,q,N/A,N/A,N/A,,200
+People's Insurance Co. of China,People's Insurance Co. of China,q,N/A,N/A,N/A,,200
+Brookfield,Brookfield,q,N/A,N/A,N/A,,200
+Archer Daniels Midland,Archer Daniels Midland,q,N/A,N/A,N/A,,200
+Siemens,Siemens,q,N/A,N/A,N/A,,200
+Enel,Enel,q,N/A,N/A,N/A,,200
+Sony,Sony,q,N/A,N/A,N/A,,200
+Procter & Gamble,Procter & Gamble,q,N/A,N/A,N/A,,200
+Lowe's,Lowe's,q,N/A,N/A,N/A,,200
+Wuchan Zhongda Group,Wuchan Zhongda Group,q,N/A,N/A,N/A,,200
+Nissan Motor,Nissan Motor,q,N/A,N/A,N/A,,200
+Energy Transfer,Energy Transfer,q,N/A,N/A,N/A,,200
+Groupe BPCE,Groupe BPCE,q,N/A,N/A,N/A,,200
+RTX,RTX,q,N/A,N/A,N/A,,200
+Albertsons,Albertsons,q,N/A,N/A,N/A,,200
+Zhejiang Geely Holding Group,Zhejiang Geely Holding Group,q,N/A,N/A,N/A,,200
+Engie,Engie,q,N/A,N/A,N/A,,200
+U.S. Postal Service,U.S. Postal Service,q,N/A,N/A,N/A,,200
+Sysco,Sysco,q,N/A,N/A,N/A,,200
+Kia,Kia,q,N/A,N/A,N/A,,200
+Vinci,Vinci,q,N/A,N/A,N/A,,200
+Shenghong Holding Group,Shenghong Holding Group,q,N/A,N/A,N/A,,200
+Seven & I Holdings,Seven & I Holdings,q,N/A,N/A,N/A,,200
+State Bank of India,State Bank of India,q,N/A,N/A,N/A,,200
+China FAW Group,China FAW Group,q,N/A,N/A,N/A,,200
+Jiangxi Copper,Jiangxi Copper,q,N/A,N/A,N/A,,200
+Shandong Weiqiao Pioneering Group,Shandong Weiqiao Pioneering Group,q,N/A,N/A,N/A,,200
+JBS,JBS,q,N/A,N/A,N/A,,200
+Bank of Communications,Bank of Communications,q,N/A,N/A,N/A,,200
+Progressive,Progressive,q,N/A,N/A,N/A,,200
+Pacific Construction Group,Pacific Construction Group,q,N/A,N/A,N/A,,200
+Pertamina,Pertamina,q,N/A,N/A,N/A,,200
+Uniper,Uniper,q,N/A,N/A,N/A,,200
+Japan Post Holdings,Japan Post Holdings,q,N/A,N/A,N/A,,200
+Airbus,Airbus,q,N/A,N/A,N/A,,200
+American Express,American Express,q,N/A,N/A,N/A,,200
+Orlen,Orlen,q,N/A,N/A,N/A,,200
+Deutsche Bank,Deutsche Bank,q,N/A,N/A,N/A,,200
+Shaanxi Coal & Chemical Industry,Shaanxi Coal & Chemical Industry,q,N/A,N/A,N/A,,200
+Lloyds Banking Group,Lloyds Banking Group,q,N/A,N/A,N/A,,200
+ENEOS Holdings,ENEOS Holdings,q,N/A,N/A,N/A,,200
+Oil & Natural Gas,Oil & Natural Gas,q,N/A,N/A,N/A,,200
+Lukoil,Lukoil,q,N/A,N/A,N/A,,200
+Nippon Life Insurance,Nippon Life Insurance,q,N/A,N/A,N/A,,200
+ING Group,ING Group,q,N/A,N/A,N/A,,200
+Barclays,Barclays,q,N/A,N/A,N/A,,200
+Lockheed Martin,Lockheed Martin,q,N/A,N/A,N/A,,200
+MetLife,MetLife,q,N/A,N/A,N/A,,200
+Roche Group,Roche Group,q,N/A,N/A,N/A,,200
+HCA Healthcare,HCA Healthcare,q,N/A,N/A,N/A,,200
+BASF,BASF,q,N/A,N/A,N/A,,200
+Koc Holding,Koc Holding,q,N/A,N/A,N/A,,200
+Prudential Financial,Prudential Financial,q,N/A,N/A,N/A,,200
+China Merchants Bank,China Merchants Bank,q,N/A,N/A,N/A,,200
+Petronas,Petronas,q,N/A,N/A,N/A,,200
+Alimentation Couche-Tard,Alimentation Couche-Tard,q,N/A,N/A,N/A,,200
+Lenovo Group,Lenovo Group,q,N/A,N/A,N/A,,200
+Korea Electric Power,Korea Electric Power,q,N/A,N/A,N/A,,200
+Toyota Tsusho,Toyota Tsusho,q,N/A,N/A,N/A,,200
+China Poly Group,China Poly Group,q,N/A,N/A,N/A,,200
+Wilmar International,Wilmar International,q,N/A,N/A,N/A,,200
+Beijing Automotive Group,Beijing Automotive Group,q,N/A,N/A,N/A,,200
+Munich Re Group,Munich Re Group,q,N/A,N/A,N/A,,200
+Aluminum Corp. of China,Aluminum Corp. of China,q,N/A,N/A,N/A,,200
+Sumitomo Mitsui Financial Group,Sumitomo Mitsui Financial Group,q,N/A,N/A,N/A,,200
+Itau Unibanco Holding,Itau Unibanco Holding,q,N/A,N/A,N/A,,200
+Boeing,Boeing,q,N/A,N/A,N/A,,200
+AEON,AEON,q,N/A,N/A,N/A,,200
+Xiamen ITG Holding Group,Xiamen ITG Holding Group,q,N/A,N/A,N/A,,200
+Zurich Insurance Group,Zurich Insurance Group,q,N/A,N/A,N/A,,200
+Unilever,Unilever,q,N/A,N/A,N/A,,200
+Accenture,Accenture,q,N/A,N/A,N/A,,200
+COSCO Shipping,COSCO Shipping,q,N/A,N/A,N/A,,200
+Caterpillar,Caterpillar,q,N/A,N/A,N/A,,200
+Dai-ichi Life Holdings,Dai-ichi Life Holdings,q,N/A,N/A,N/A,,200
+LG Electronics,LG Electronics,q,N/A,N/A,N/A,,200
+Hitachi,Hitachi,q,N/A,N/A,N/A,,200
+Merck,Merck,q,N/A,N/A,N/A,,200
+Allstate,Allstate,q,N/A,N/A,N/A,,200
+Pfizer,Pfizer,q,N/A,N/A,N/A,,200
+Zhejiang Hengyi Group,Zhejiang Hengyi Group,q,N/A,N/A,N/A,,200
+IBM,IBM,q,N/A,N/A,N/A,,200
+New York Life Insurance,New York Life Insurance,q,N/A,N/A,N/A,,200
+ArcelorMittal,ArcelorMittal,q,N/A,N/A,N/A,,200
+Assicurazioni Generali,Assicurazioni Generali,q,N/A,N/A,N/A,,200
+Delta Air Lines,Delta Air Lines,q,N/A,N/A,N/A,,200
+China North Industries Group,China North Industries Group,q,N/A,N/A,N/A,,200
+Bouygues,Bouygues,q,N/A,N/A,N/A,,200
+China Energy Engineering Group,China Energy Engineering Group,q,N/A,N/A,N/A,,200
+Renault,Renault,q,N/A,N/A,N/A,,200
+Banco do Brasil,Banco do Brasil,q,N/A,N/A,N/A,,200
+Publix Super Markets,Publix Super Markets,q,N/A,N/A,N/A,,200
+Anheuser-Busch InBev,Anheuser-Busch InBev,q,N/A,N/A,N/A,,200
+Chery Holding Group,Chery Holding Group,q,N/A,N/A,N/A,,200
+Mizuho Financial Group,Mizuho Financial Group,q,N/A,N/A,N/A,,200
+Jinchuan Group,Jinchuan Group,q,N/A,N/A,N/A,,200
+Nationwide,Nationwide,q,N/A,N/A,N/A,,200
+Edeka Zentrale,Edeka Zentrale,q,N/A,N/A,N/A,,200
+Daimler Truck Holding,Daimler Truck Holding,q,N/A,N/A,N/A,,200
+TD Synnex,TD Synnex,q,N/A,N/A,N/A,,200
+Bank of Montreal,Bank of Montreal,q,N/A,N/A,N/A,,200
+XMXYG,XMXYG,q,N/A,N/A,N/A,,200
+Industrial Bank,Industrial Bank,q,N/A,N/A,N/A,,200
+United Airlines Holdings,United Airlines Holdings,q,N/A,N/A,N/A,,200
+Nippon Steel,Nippon Steel,q,N/A,N/A,N/A,,200
+ConocoPhillips,ConocoPhillips,q,N/A,N/A,N/A,,200
+Midea Group,Midea Group,q,N/A,N/A,N/A,,200
+Tsingshan Holding Group,Tsingshan Holding Group,q,N/A,N/A,N/A,,200
+TJX,TJX,q,N/A,N/A,N/A,,200
+AbbVie,AbbVie,q,N/A,N/A,N/A,,200
+Enterprise Products Partners,Enterprise Products Partners,q,N/A,N/A,N/A,,200
+China Pacific Insurance (Group),China Pacific Insurance (Group),q,N/A,N/A,N/A,,200
+Guangzhou Automobile Industry Group,Guangzhou Automobile Industry Group,q,N/A,N/A,N/A,,200
+Bank of Nova Scotia,Bank of Nova Scotia,q,N/A,N/A,N/A,,200
+HBIS Group,HBIS Group,q,N/A,N/A,N/A,,200
+Intesa Sanpaolo,Intesa Sanpaolo,q,N/A,N/A,N/A,,200
+China Huaneng Group,China Huaneng Group,q,N/A,N/A,N/A,,200
+Chubb,Chubb,q,N/A,N/A,N/A,,200
+HDFC Bank,HDFC Bank,q,N/A,N/A,N/A,,200
+BHP Group,BHP Group,q,N/A,N/A,N/A,,200
+Repsol,Repsol,q,N/A,N/A,N/A,,200
+Panasonic Holdings,Panasonic Holdings,q,N/A,N/A,N/A,,200
+Maersk Group,Maersk Group,q,N/A,N/A,N/A,,200
+Tokio Marine Holdings,Tokio Marine Holdings,q,N/A,N/A,N/A,,200
+Charter Communications,Charter Communications,q,N/A,N/A,N/A,,200
+State Power Investment,State Power Investment,q,N/A,N/A,N/A,,200
+PDD Holdings,PDD Holdings,q,N/A,N/A,N/A,,200
+Performance Food Group,Performance Food Group,q,N/A,N/A,N/A,,200
+American Airlines Group,American Airlines Group,q,N/A,N/A,N/A,,200
+China United Network Communications,China United Network Communications,q,N/A,N/A,N/A,,200
+AstraZeneca,AstraZeneca,q,N/A,N/A,N/A,,200
+Capital One Financial,Capital One Financial,q,N/A,N/A,N/A,,200
+POSCO Holdings,POSCO Holdings,q,N/A,N/A,N/A,,200
+Cisco Systems,Cisco Systems,q,N/A,N/A,N/A,,200
+Rio Tinto Group,Rio Tinto Group,q,N/A,N/A,N/A,,200
+HP,HP,q,N/A,N/A,N/A,,200
+Phoenix Pharma,Phoenix Pharma,q,N/A,N/A,N/A,,200
+Sanofi,Sanofi,q,N/A,N/A,N/A,,200
+Tyson Foods,Tyson Foods,q,N/A,N/A,N/A,,200
+Bunge Global,Bunge Global,q,N/A,N/A,N/A,,200
+Intel,Intel,q,N/A,N/A,N/A,,200
+Idemitsu Kosan,Idemitsu Kosan,q,N/A,N/A,N/A,,200
+Oracle,Oracle,q,N/A,N/A,N/A,,200
+Tata Motors,Tata Motors,q,N/A,N/A,N/A,,200
+Broadcom,Broadcom,q,N/A,N/A,N/A,,200
+Bharat Petroleum,Bharat Petroleum,q,N/A,N/A,N/A,,200
+VTB Bank,VTB Bank,q,N/A,N/A,N/A,,200
+Novartis,Novartis,q,N/A,N/A,N/A,,200
+Deere,Deere,q,N/A,N/A,N/A,,200
+Jinneng Holding Group,Jinneng Holding Group,q,N/A,N/A,N/A,,200
+Nike,Nike,q,N/A,N/A,N/A,,200
+Dongfeng Motor,Dongfeng Motor,q,N/A,N/A,N/A,,200
+Jingye Group,Jingye Group,q,N/A,N/A,N/A,,200
+Banco Bradesco,Banco Bradesco,q,N/A,N/A,N/A,,200
+Marubeni,Marubeni,q,N/A,N/A,N/A,,200
+Shaanxi Yanchang Petroleum (Group),Shaanxi Yanchang Petroleum (Group),q,N/A,N/A,N/A,,200
+Deutsche Bahn,Deutsche Bahn,q,N/A,N/A,N/A,,200
+Xiaomi,Xiaomi,q,N/A,N/A,N/A,,200
+Cr�dit Mutuel Group,Cr�dit Mutuel Group,q,N/A,N/A,N/A,,200
+Louis Dreyfus,Louis Dreyfus,q,N/A,N/A,N/A,,200
+Liberty Mutual Insurance Group,Liberty Mutual Insurance Group,q,N/A,N/A,N/A,,200
+Bayer,Bayer,q,N/A,N/A,N/A,,200
+Saint-Gobain,Saint-Gobain,q,N/A,N/A,N/A,,200
+Contemporary Amperex Technology,Contemporary Amperex Technology,q,N/A,N/A,N/A,,200
+Plains GP Holdings,Plains GP Holdings,q,N/A,N/A,N/A,,200
+Talanx,Talanx,q,N/A,N/A,N/A,,200
+UniCredit Group,UniCredit Group,q,N/A,N/A,N/A,,200
+Volvo,Volvo,q,N/A,N/A,N/A,,200
+HD Hyundai,HD Hyundai,q,N/A,N/A,N/A,,200
+Shanghai Pudong Development Bank,Shanghai Pudong Development Bank,q,N/A,N/A,N/A,,200
+USAA,USAA,q,N/A,N/A,N/A,,200
+SK Hynix,SK Hynix,q,N/A,N/A,N/A,,200
+Iberdrola,Iberdrola,q,N/A,N/A,N/A,,200
+Veolia Environnement,Veolia Environnement,q,N/A,N/A,N/A,,200
+Bristol-Myers Squibb,Bristol-Myers Squibb,q,N/A,N/A,N/A,,200
+Landesbank Baden-Wurttemberg,Landesbank Baden-Wurttemberg,q,N/A,N/A,N/A,,200
+Ingram Micro Holding,Ingram Micro Holding,q,N/A,N/A,N/A,,200
+Sumitomo,Sumitomo,q,N/A,N/A,N/A,,200
+General Dynamics,General Dynamics,q,N/A,N/A,N/A,,200
+China Vanke,China Vanke,q,N/A,N/A,N/A,,200
+SoftBank Group,SoftBank Group,q,N/A,N/A,N/A,,200
+America Movil,America Movil,q,N/A,N/A,N/A,,200
+Canadian Imperial Bank of Commerce,Canadian Imperial Bank of Commerce,q,N/A,N/A,N/A,,200
+Coca-Cola,Coca-Cola,q,N/A,N/A,N/A,,200
+L'Or�al,L'Or�al,q,N/A,N/A,N/A,,200
+Denso,Denso,q,N/A,N/A,N/A,,200
+TIAA,TIAA,q,N/A,N/A,N/A,,200
+Meituan,Meituan,q,N/A,N/A,N/A,,200
+SNCF Group,SNCF Group,q,N/A,N/A,N/A,,200
+Travelers,Travelers,q,N/A,N/A,N/A,,200
+Zhejiang Communications Investment Group,Zhejiang Communications Investment Group,q,N/A,N/A,N/A,,200
+Swiss Re,Swiss Re,q,N/A,N/A,N/A,,200
+China South Industries Group,China South Industries Group,q,N/A,N/A,N/A,,200
+Raizen,Raizen,q,N/A,N/A,N/A,,200
+Taikang Insurance Group,Taikang Insurance Group,q,N/A,N/A,N/A,,200
+Ingka Group,Ingka Group,q,N/A,N/A,N/A,,200
+Eli Lilly,Eli Lilly,q,N/A,N/A,N/A,,200
+ACS,ACS,q,N/A,N/A,N/A,,200
+Susun Construction Group,Susun Construction Group,q,N/A,N/A,N/A,,200
+China Huadian,China Huadian,q,N/A,N/A,N/A,,200
+George Weston,George Weston,q,N/A,N/A,N/A,,200
+Orange,Orange,q,N/A,N/A,N/A,,200
+ZF Friedrichshafen,ZF Friedrichshafen,q,N/A,N/A,N/A,,200
+Telefonica,Telefonica,q,N/A,N/A,N/A,,200
+Tokyo Electric Power,Tokyo Electric Power,q,N/A,N/A,N/A,,200
+Woolworths Group,Woolworths Group,q,N/A,N/A,N/A,,200
+Vodafone Group,Vodafone Group,q,N/A,N/A,N/A,,200
+Uber Technologies,Uber Technologies,q,N/A,N/A,N/A,,200
+Quanta Computer,Quanta Computer,q,N/A,N/A,N/A,,200
+Fomento Econ�mico Mexicano,Fomento Econ�mico Mexicano,q,N/A,N/A,N/A,,200
+MS&AD Insurance Group Holdings,MS&AD Insurance Group Holdings,q,N/A,N/A,N/A,,200
+China National Building Material Group,China National Building Material Group,q,N/A,N/A,N/A,,200
+Sinomach,Sinomach,q,N/A,N/A,N/A,,200
+DZ Bank,DZ Bank,q,N/A,N/A,N/A,,200
+Massachusetts Mutual Life Insurance,Massachusetts Mutual Life Insurance,q,N/A,N/A,N/A,,200
+Dow,Dow,q,N/A,N/A,N/A,,200
+ANZ Group Holdings,ANZ Group Holdings,q,N/A,N/A,N/A,,200
+Continental,Continental,q,N/A,N/A,N/A,,200
+Commonwealth Bank of Australia,Commonwealth Bank of Australia,q,N/A,N/A,N/A,,200
+Thermo Fisher Scientific,Thermo Fisher Scientific,q,N/A,N/A,N/A,,200
+Magna International,Magna International,q,N/A,N/A,N/A,,200
+U.S. Bancorp,U.S. Bancorp,q,N/A,N/A,N/A,,200
+Caixa Econ�mica Federal,Caixa Econ�mica Federal,q,N/A,N/A,N/A,,200
+Fairfax Financial Holdings,Fairfax Financial Holdings,q,N/A,N/A,N/A,,200
+J. Sainsbury,J. Sainsbury,q,N/A,N/A,N/A,,200
+Zijin Mining Group,Zijin Mining Group,q,N/A,N/A,N/A,,200
+World Kinect,World Kinect,q,N/A,N/A,N/A,,200
+X5 Retail Group,X5 Retail Group,q,N/A,N/A,N/A,,200
+Novo Nordisk,Novo Nordisk,q,N/A,N/A,N/A,,200
+Olam Group,Olam Group,q,N/A,N/A,N/A,,200
+Compass Group,Compass Group,q,N/A,N/A,N/A,,200
+Hyundai Mobis,Hyundai Mobis,q,N/A,N/A,N/A,,200
+Abbott Laboratories,Abbott Laboratories,q,N/A,N/A,N/A,,200
+Standard Chartered,Standard Chartered,q,N/A,N/A,N/A,,200
+Shanghai Construction Group,Shanghai Construction Group,q,N/A,N/A,N/A,,200
+Inditex,Inditex,q,N/A,N/A,N/A,,200
+Best Buy,Best Buy,q,N/A,N/A,N/A,,200
+Northwestern Mutual,Northwestern Mutual,q,N/A,N/A,N/A,,200
+Schneider Electric,Schneider Electric,q,N/A,N/A,N/A,,200
+KB Financial Group,KB Financial Group,q,N/A,N/A,N/A,,200
+Northrop Grumman,Northrop Grumman,q,N/A,N/A,N/A,,200
+National Australia Bank,National Australia Bank,q,N/A,N/A,N/A,,200
+Hanwha,Hanwha,q,N/A,N/A,N/A,,200
+Molina Healthcare,Molina Healthcare,q,N/A,N/A,N/A,,200
+Lufthansa Group,Lufthansa Group,q,N/A,N/A,N/A,,200
+Dollar General,Dollar General,q,N/A,N/A,N/A,,200
+LyondellBasell Industries,LyondellBasell Industries,q,N/A,N/A,N/A,,200
+China Minsheng Banking,China Minsheng Banking,q,N/A,N/A,N/A,,200
+GSK,GSK,q,N/A,N/A,N/A,,200
+Bank of New York (BNY),Bank of New York (BNY),q,N/A,N/A,N/A,,200
+Haier Smart Home,Haier Smart Home,q,N/A,N/A,N/A,,200
+Cenovus Energy,Cenovus Energy,q,N/A,N/A,N/A,,200
+Coop Group,Coop Group,q,N/A,N/A,N/A,,200
+S.F. Holding,S.F. Holding,q,N/A,N/A,N/A,,200
+Hangzhou Industrial Investment Group,Hangzhou Industrial Investment Group,q,N/A,N/A,N/A,,200
+Warner Bros. Discovery,Warner Bros. Discovery,q,N/A,N/A,N/A,,200
+CHS,CHS,q,N/A,N/A,N/A,,200
+Enbridge,Enbridge,q,N/A,N/A,N/A,,200
+Netflix,Netflix,q,N/A,N/A,N/A,,200
+Qualcomm,Qualcomm,q,N/A,N/A,N/A,,200
+KDDI,KDDI,q,N/A,N/A,N/A,,200
+Shandong Hi-Speed Group,Shandong Hi-Speed Group,q,N/A,N/A,N/A,,200
+General Electric (GE Aerospace),General Electric (GE Aerospace),q,N/A,N/A,N/A,,200
+Mercadona,Mercadona,q,N/A,N/A,N/A,,200
+Honeywell International,Honeywell International,q,N/A,N/A,N/A,,200
+Hangzhou Iron and Steel Group,Hangzhou Iron and Steel Group,q,N/A,N/A,N/A,,200
+Guangzhou Industrial Investment Holdings,Guangzhou Industrial Investment Holdings,q,N/A,N/A,N/A,,200
+Shanghai Pharmaceuticals Holding,Shanghai Pharmaceuticals Holding,q,N/A,N/A,N/A,,200
+Suzuki Motor,Suzuki Motor,q,N/A,N/A,N/A,,200
+Vale,Vale,q,N/A,N/A,N/A,,200
+ThyssenKrupp,ThyssenKrupp,q,N/A,N/A,N/A,,200
+Salesforce,Salesforce,q,N/A,N/A,N/A,,200
+Philip Morris International,Philip Morris International,q,N/A,N/A,N/A,,200
+US Foods Holding,US Foods Holding,q,N/A,N/A,N/A,,200
+Shenzhen Investment Holdings,Shenzhen Investment Holdings,q,N/A,N/A,N/A,,200
+Westpac Banking,Westpac Banking,q,N/A,N/A,N/A,,200
+Jiangsu Shagang Group,Jiangsu Shagang Group,q,N/A,N/A,N/A,,200
+AIA Group,AIA Group,q,N/A,N/A,N/A,,200
+Guangdong Guangxin Holdings,Guangdong Guangxin Holdings,q,N/A,N/A,N/A,,200
+QNB Group,QNB Group,q,N/A,N/A,N/A,,200
+NatWest Group,NatWest Group,q,N/A,N/A,N/A,,200
+La Poste,La Poste,q,N/A,N/A,N/A,,200
+Siemens Energy,Siemens Energy,q,N/A,N/A,N/A,,200
+Luxshare Precision Industry,Luxshare Precision Industry,q,N/A,N/A,N/A,,200
+Energie Baden-Wurttemberg,Energie Baden-Wurttemberg,q,N/A,N/A,N/A,,200
+Suncor Energy,Suncor Energy,q,N/A,N/A,N/A,,200
+New Hope Holding Group,New Hope Holding Group,q,N/A,N/A,N/A,,200
+China Electronics,China Electronics,q,N/A,N/A,N/A,,200
+LG Chem,LG Chem,q,N/A,N/A,N/A,,200
+SAP,SAP,q,N/A,N/A,N/A,,200
+Migros Group,Migros Group,q,N/A,N/A,N/A,,200
+Meiji Yasuda Life Insurance,Meiji Yasuda Life Insurance,q,N/A,N/A,N/A,,200
+D.R. Horton,D.R. Horton,q,N/A,N/A,N/A,,200
+OMV Group,OMV Group,q,N/A,N/A,N/A,,200
+Lithia Motors,Lithia Motors,q,N/A,N/A,N/A,,200
+CFE,CFE,q,N/A,N/A,N/A,,200
+Mondelez International,Mondelez International,q,N/A,N/A,N/A,,200
+Schlumberger,Schlumberger,q,N/A,N/A,N/A,,200
+Ansteel Group,Ansteel Group,q,N/A,N/A,N/A,,200
+Mitsubishi Electric,Mitsubishi Electric,q,N/A,N/A,N/A,,200
+Jer�nimo Martins,Jer�nimo Martins,q,N/A,N/A,N/A,,200
+Starbucks,Starbucks,q,N/A,N/A,N/A,,200
+Hailiang Group,Hailiang Group,q,N/A,N/A,N/A,,200
+Mapfre Group,Mapfre Group,q,N/A,N/A,N/A,,200
+CK Hutchison Holdings,CK Hutchison Holdings,q,N/A,N/A,N/A,,200
+ELO Group,ELO Group,q,N/A,N/A,N/A,,200
+Visa,Visa,q,N/A,N/A,N/A,,200
+China Datang,China Datang,q,N/A,N/A,N/A,,200
+CRRC Group,CRRC Group,q,N/A,N/A,N/A,,200
+Jardine Matheson,Jardine Matheson,q,N/A,N/A,N/A,,200
+Sompo Holdings,Sompo Holdings,q,N/A,N/A,N/A,,200
+TongLing Nonferrous Metals Group,TongLing Nonferrous Metals Group,q,N/A,N/A,N/A,,200
+CBRE Group,CBRE Group,q,N/A,N/A,N/A,,200
+Rabobank Group,Rabobank Group,q,N/A,N/A,N/A,,200
+Shudao Investment Group,Shudao Investment Group,q,N/A,N/A,N/A,,200
+Guangzhou Municipal Construction Group,Guangzhou Municipal Construction Group,q,N/A,N/A,N/A,,200
+Daiwa House Industry,Daiwa House Industry,q,N/A,N/A,N/A,,200
+CRH,CRH,q,N/A,N/A,N/A,,200
+Lennar,Lennar,q,N/A,N/A,N/A,,200
+Guangzhou Pharmaceutical Holdings,Guangzhou Pharmaceutical Holdings,q,N/A,N/A,N/A,,200
+Country Garden Holdings,Country Garden Holdings,q,N/A,N/A,N/A,,200
+Pegatron,Pegatron,q,N/A,N/A,N/A,,200
+GE Vernova,GE Vernova,q,N/A,N/A,N/A,,200
+GS Caltex,GS Caltex,q,N/A,N/A,N/A,,200
+ICICI Bank,ICICI Bank,q,N/A,N/A,N/A,,200
+Shandong Gold Group,Shandong Gold Group,q,N/A,N/A,N/A,,200
+International Airlines Group,International Airlines Group,q,N/A,N/A,N/A,,200
+Shanghai Delong Steel Group,Shanghai Delong Steel Group,q,N/A,N/A,N/A,,200
+PNC Financial Services Group,PNC Financial Services Group,q,N/A,N/A,N/A,,200
+Perusahaan Listrik Negara,Perusahaan Listrik Negara,q,N/A,N/A,N/A,,200
+Emirates Group,Emirates Group,q,N/A,N/A,N/A,,200
+Beijing Jianlong Heavy Industry Group,Beijing Jianlong Heavy Industry Group,q,N/A,N/A,N/A,,200
+Cummins,Cummins,q,N/A,N/A,N/A,,200
+China National Coal Group,China National Coal Group,q,N/A,N/A,N/A,,200
+Air France-KLM Group,Air France-KLM Group,q,N/A,N/A,N/A,,200
+Sumitomo Life Insurance,Sumitomo Life Insurance,q,N/A,N/A,N/A,,200
+Paccar,Paccar,q,N/A,N/A,N/A,,200
+Metro,Metro,q,N/A,N/A,N/A,,200
+BAE Systems,BAE Systems,q,N/A,N/A,N/A,,200
+Tongwei Group,Tongwei Group,q,N/A,N/A,N/A,,200
+Greenland Holding Group,Greenland Holding Group,q,N/A,N/A,N/A,,200
+China National Aviation Fuel Group,China National Aviation Fuel Group,q,N/A,N/A,N/A,,200
+Amgen,Amgen,q,N/A,N/A,N/A,,200
+Hunan Iron & Steel Group,Hunan Iron & Steel Group,q,N/A,N/A,N/A,,200
+St. James's Place,St. James's Place,q,N/A,N/A,N/A,,200
+PBF Energy,PBF Energy,q,N/A,N/A,N/A,,200
+British American Tobacco,British American Tobacco,q,N/A,N/A,N/A,,200
+Linde,Linde,q,N/A,N/A,N/A,,200
+Mitsubishi Heavy Industries,Mitsubishi Heavy Industries,q,N/A,N/A,N/A,,200
+Guangxi Investment Group,Guangxi Investment Group,q,N/A,N/A,N/A,,200
+GuideWell Mutual Holding,GuideWell Mutual Holding,q,N/A,N/A,N/A,,200
+Mazda Motor,Mazda Motor,q,N/A,N/A,N/A,,200
+ABB,ABB,q,N/A,N/A,N/A,,200
+Magnit,Magnit,q,N/A,N/A,N/A,,200
+CPC,CPC,q,N/A,N/A,N/A,,200
+Ecopetrol,Ecopetrol,q,N/A,N/A,N/A,,200
+Wistron,Wistron,q,N/A,N/A,N/A,,200
+Medtronic,Medtronic,q,N/A,N/A,N/A,,200
+New China Life Insurance,New China Life Insurance,q,N/A,N/A,N/A,,200
+China General Technology,China General Technology,q,N/A,N/A,N/A,,200
+Heineken,Heineken,q,N/A,N/A,N/A,,200

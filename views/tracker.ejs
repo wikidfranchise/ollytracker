@@ -287,12 +287,18 @@
       secA.rel = 'noopener noreferrer';
       secA.innerHTML = `<span class="secBadge"></span><span>SEC (EDGAR)</span>`;
       const viewBoardBtn = el('button','btn');
+      // ADD THIS RIGHT AFTER THE VIEW BOARD BUTTON:
+      const boardHistoryBtn = el('button', 'btn btn-history');
+      boardHistoryBtn.textContent = 'Board History';
+      boardHistoryBtn.title = 'Load complete board history from all Form 3 filings (2007-present)';
+      boardHistoryBtn.addEventListener('click', () => loadBoardHistory(cik, name, ticker));
       viewBoardBtn.textContent = 'View Board';
       viewBoardBtn.title = 'Load latest board roster from SEC Directors dataset';
       viewBoardBtn.disabled = false;
       viewBoardBtn.addEventListener('click', () => loadBoard(cik, name, ticker));
       actions.appendChild(secA);
       actions.appendChild(viewBoardBtn);
+      actions.appendChild(boardHistoryBtn);  // ADD THIS LINE
       card.appendChild(actions);
       const profileWrap = el('div');
       profileWrap.id = 'profileWrap';
